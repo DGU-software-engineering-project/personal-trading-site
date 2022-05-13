@@ -5,10 +5,12 @@ app = Flask(__name__)
 client = pymongo.MongoClient("mongodb+srv://admin:1234@cluster0.il12x.mongodb.net/tradingSiteDB?retryWrites=true&w=majority")
 db = client['tradingSiteDB']
 users = db.usersDB
+items = db.itemsDB
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    entries = list(items.find())
+    return render_template('home.html', entries=entries)
 
 @app.route('/users')
 def viewusers():

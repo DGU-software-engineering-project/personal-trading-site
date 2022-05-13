@@ -2,17 +2,24 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 
 <body>
     <nav style="display: flex">
-        <a href="/"><img src="assets/img/logo.png" alt="소공 프로젝트"></a>
+        <a href="/"><img src="../static/tmp.svg" alt="소공 프로젝트"></a>
         <div style="margin-left: auto">
             <a href="./signin">signin</a>
             <a href="./signup">signup</a>
         </div>
     </nav>
+    <ul class=entries>
+        {% for entry in entries %}
+          <li><h2>{{ entry.item }}</h2>가격 : {{ entry.price }} <img style="width: 90px; height:120px;" src="{{ entry.photo }}" alt="소공 프로젝트">
+        {% else %}
+          <li><em>Unbelievable.  No entries here so far</em>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>
