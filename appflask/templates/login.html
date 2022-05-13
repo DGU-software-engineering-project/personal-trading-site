@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>A Personal Trading Site</title>
+
+        <!-- CSS -->
+        <!-- <link rel="stylesheet" href= {{ url_for('static', filename='css/index.css') }}> -->
+        <link rel="stylesheet" href="static/css/index.css?after">
+    </head>
+
+    <body>
+
+        <div id="page">
+            <header>
+                <div id="nav">
+                    <div id="logo">
+                        <!-- <img src={{ url_for('static', filename='images/dgu-logo.jpg') }} alt="logo"> -->
+                        <img src="static/images/dgu-logo.jpg?v=1">
+                    </div>
+                </div>
+                <div id="top_menu">
+                    <a href="">HOME</a>
+                    |
+                    <a href="/login">LOGIN</a>
+                    |
+                    <a href="">REGISTER</a>
+                </div>
+            </header>
+
+            <div class="loginbox">
+                <h2>로그인</h2>
+                <form action="/login" method="post">
+                  <!--작성하지 않아도 문제는 없음-->
+                  <fieldset>
+                    <legend>로그인 구역</legend>
+                    <label for="loginid">아이디(E-mail)</label>
+                    <input type="text" id="loginid" placeholder="아이디(E-mail)을 입력해 주세요">
+                    <label for="loginpw">비밀번호</label>
+                    <input type="password" id="loginpw" placeholder="비밀번호를 입력해 주세요">
+                    <ul>
+                      <li><a href="#">아이디/비밀번호찾기</a></li>
+                      <li><a href="#">회원가입</a></li>
+                    </ul>
+                    <!--데이터를 서버로 전송-->
+                    <button type="submit">로그인</button>
+                  </fieldset>
+                </form>
+              </div>
+        </div>
+    </body>
+</html>

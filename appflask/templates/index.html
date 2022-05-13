@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>A Personal Trading Site</title>
+
+        <!-- CSS -->
+        <!-- <link rel="stylesheet" href= {{ url_for('static', filename='css/index.css') }}> -->
+        <link rel="stylesheet" href="static/css/index.css?after">
+    </head>
+
+    <body>
+
+        <div id="page">
+            <header>
+                <div id="nav">
+                    <div id="logo">
+                        <!-- <img src={{ url_for('static', filename='images/dgu-logo.jpg') }} alt="logo"> -->
+                        <img src="static/images/dgu-logo.jpg?v=1">
+                    </div>
+                </div>
+                <div id="top_menu">
+                    <a href="/">HOME</a>
+                    |
+                    <a href="./login">LOGIN</a>
+                    |
+                    <a href="">REGISTER</a>
+                </div>
+            </header>
+
+            <section id="serv_list">
+                <div id="container">
+                    <div id="title">
+                        <h1>PRODUCT LIST</h1>
+                        <!--keywords line..? maybe-->
+                    </div>
+                    <div id="item_list">
+                        <div id="product">
+                            <div id="product_img">
+                                <img src={{ url_for('static', filename='images/product.jpg') }} alt="">
+                            </div>
+
+                            <div id="product_text">
+                                <h2>product Name</h2>
+                                <h3>price</h3>
+                                <form>
+                                    <a href="">
+                                        <input type="button" value="click here">
+                                    </a>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </body>
+</html>
