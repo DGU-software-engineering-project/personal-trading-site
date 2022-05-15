@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    
+
+    <!-- Title Page-->
+    <title>Registration</title>
+
+    
+</head>
+
+<body>
+    <div>
+        <div>
+            <div>
+                <div>
+                    <h2>Registration</h2>
+                    <form method="POST" action = "{% url 'register}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Name" name="name">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Id" name="user_id">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="password" placeholder="Password" name="password">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="password" placeholder="rePassword" name="re_password">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Email" name="email">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Phone number" name="phone">
+                        </div>
+                        <div class="p-t-30">
+                            <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+</body>
+
+</html>
