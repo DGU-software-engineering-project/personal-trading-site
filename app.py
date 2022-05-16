@@ -17,6 +17,10 @@ def viewusers():
     tmp = users.find()
     return dumps(tmp)
 
+@app.route('/items')
+def viewitems():
+    tmp = items.find()
+    return dumps(tmp)
 # @app.route('/signin',methods = ['POST', 'GET'])
 # def login():
 #     if request.method == 'POST':

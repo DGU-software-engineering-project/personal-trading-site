@@ -6,6 +6,22 @@
 </head>
 
 <body>
+    <script>
+        let itemsURL = 'http://127.0.0.1:5000/items';
+        let request = new XMLHttpRequest();
+        request.open('GET', itemsURL)
+        request.responseType = 'json';
+        request.send();
+        request.onload = function() {
+            let items = request.response;
+            // populateHeader(itemsInfo);
+            // showHeroes(itemsInfo);
+            for(key in items){
+            console.log("item :"+items[key].item+" , price :"+items[key].price);
+		}
+        }
+        
+    </script>
     <nav style="display: flex">
         <a href="/"><img src="../static/tmp.svg" alt="소공 프로젝트"></a>
         <div style="margin-left: auto">
@@ -20,6 +36,18 @@
           <li><em>Unbelievable.  No entries here so far</em>
         {% endfor %}
     </ul>
+    <!-- <script>
+        let itemsURL = 'http://localhost/items';
+        let request = new XMLHttpRequest();
+        request.open('GET', itemsURL)
+        request.responseType = 'json';
+        request.send();
+        request.onload = function() {
+            var items = request.response;
+            populateHeader(itemsInfo);
+            showHeroes(itemsInfo);
+        }
+    </script> -->
 </body>
 
 </html>
