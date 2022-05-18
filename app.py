@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request
+from flask import Flask,render_template,redirect,request, url_for, abort
 import pymongo
 from bson.json_util import loads, dumps
 app = Flask(__name__)
@@ -21,15 +21,19 @@ def viewusers():
 def viewitems():
     tmp = items.find()
     return dumps(tmp)
-# @app.route('/signin',methods = ['POST', 'GET'])
-# def login():
-#     if request.method == 'POST':
-#         if request.form['profName'] in users.find():
-#             return redirect(url_for('success'))
-#         else:
-#             abort(401)
-#     else:
-#         return redirect(url_for('index'))
+@app.route('/signin',methods = ['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        userinfo = users.find_one({"ID" :request.form['name']})
+        if userinfo:
+            if userinfo["PW"] == request.form['password']:
+                return "success"
+            else:
+                return "password incorrect"
+        else:
+            return "Id incorrect"
+    else:
+        return render_template('signin.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
