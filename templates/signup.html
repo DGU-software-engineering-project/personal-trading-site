@@ -18,7 +18,7 @@
             <div>
                 <div>
                     <h2>Registration</h2>
-                    <form method="POST" action = "{% url 'register}">
+                    <form method="POST" action = "{{% url_for('login') }}">
                         {% csrf_token %}
                         <div class="input-group">
                             <input class="input--style-2" type="text" placeholder="Name" name="name">
