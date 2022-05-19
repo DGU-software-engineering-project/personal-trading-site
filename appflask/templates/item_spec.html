@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>트레이딩 사이트</title>
+        <meta charset="UTF-8" >
+        <link rel="stylesheet" href="static/css/item_spec.css?after">
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a class="logo" href="./">
+            <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            </a>
+            <ul>
+                {% if isLoggedin %}
+                    <li><a href="./mypage">마이페이지</a></li>
+                    <li><a href="./logout">로그아웃</a></li>
+                {% else %}
+                    <li><a href="./login">로그인</a></li>
+                    <li><a href="./signup">회원가입</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    
+        <!-- <h1>{{username}}의 상품</h1> -->
+        <h1>Username의 상품</h1>
+
+        <div class="products">
+            <img src="static/images/product.jpg">
+
+            <!-- <p class="productName">Product example</p> -->
+            <br>
+            <h2 style="font-size: 20px">Product Name</h2>
+            <!-- <p class="price">100,000</p> -->
+
+            <h2>100,000₩</h2>
+            <!-- <h2>{{productPrice}}₩</h2> -->
+
+            <p class="explain">아크테릭스 베타 22ss 자켓입니다. 
+                3월달쯤 구매해서 한번 입고 안 어울려서 판매합니다. 
+                하자는 없고 사이즈는 s로 남성용이긴한데 여성분들도 오버핏으로 입을만 한 정도입니다. 
+                남성분들은 160후반 이시거나 170초반인데 통통하지 않으시다면 충분히 입을 수 있는 사이즈 입니다.</p>
+            <div class="clearfix"></div>
+        </div>
+    
+        <div class="footer"></div>
+    </body>
+</html>

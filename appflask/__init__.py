@@ -19,5 +19,9 @@ def login():
 def sign_up():
     return render_template('sign_up.html')
         
+@app.route('/item', methods = ['GET', 'POST'])
+def item():
+    return render_template('item_spec.html')
+        
 if __name__ == '__main__':
     app.run()
