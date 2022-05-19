@@ -1,23 +1,23 @@
 * {
     box-sizing: border-box;
 }
-  
+
 body {
     margin: 0;
     min-width: 992px;
     font-family: "Helvetica";
 }
-  
+
 .navbar{
     height: 60px;
     padding-left: 30px;
 }
-  
+
 .logo{
     line-height: 60px;
     float: left;
 }
-  
+
 .logo img{
     vertical-align: middle;
 }
@@ -25,66 +25,66 @@ body {
 .navbar ul{
     float: right;
 }
-  
+
 .navbar li{
     list-style-type: none;
     float: left;
     margin-right: 30px;
 }
-  
+
 .navbar a{
     text-decoration: none;
     color: black;
     font-style: bold;
     font-size: 13px;
 }
-  
+
 body h1{
-    text-align: center;
-    margin-top: 80px;
-    margin-bottom: 120px;
-    font-size: 30px;
+    text-align: left;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: 310px;
+    font-size: 24px;
     font-style: bold;
     color: #000000;
 }
-  
-.products {
+
+.products{
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    width: 650px;
-    /* text-align: center; */
+    width: 840px;
+    height: 150px;
+    text-align: center;
 }
-  
+
 .products img{
-    width: 275px;
-    height: 275px;
-    margin-right: 20px;
+    width: 150px;
+    height: 150px;
+    margin-left: -200px;
+}
+
+.products a{
     text-decoration: none;
     color: black;
     float: left;
     font-size: 16px;
+    width: 600px;
+
 }
 
-.productName{
-    margin-top: 30px;
-    font-size: 25px;
-    font-style: bold;
-}
-  
-.price .explain{
+/* .productPrice .productStatus{
     margin-top: 4px;
-    margin-bottom: 80px;
-}
-  
+} */
+
 .clearfix{
     clear: both;
 }
-  
+
 .footer{
     text-align: center;
 }
-  
+
 .footer img{
     margin-top: 40px;
     height: 20px;

@@ -22,6 +22,11 @@ def sign_up():
 @app.route('/item', methods = ['GET', 'POST'])
 def item():
     return render_template('item_spec.html')
+
+@app.route('/mypage', methods = ['GET', 'POST'])
+def mypage():
+    return render_template('mypage.html')
         
+
 if __name__ == '__main__':
     app.run()
