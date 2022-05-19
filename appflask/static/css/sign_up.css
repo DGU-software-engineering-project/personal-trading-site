@@ -44,7 +44,7 @@ body{
 body h1{
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     font-size: 40px;
     font-style: bold;
     color: #545454;
@@ -87,6 +87,7 @@ button{ cursor: pointer; } /* 모든 버튼에 마우스손모양 처리 */
 
     /* 웹접근성으로 스크린리더기가 읽어줘야 하므로 display: none;을 사용하지 말것 */
 }
+
 .loginbox label{
     display: block;
     font-size: 12px; color: #333;
@@ -100,6 +101,13 @@ button{ cursor: pointer; } /* 모든 버튼에 마우스손모양 처리 */
     border: none; background-color: #ededed;
     padding: 0 20px; /* 앞상하 뒷좌우 */
     box-sizing: border-box; /* 패딩수치를 인사이드 처리 */
+}
+
+.nameInput{
+    width: 45%;
+    /* display: inline-block; */
+    /* position: relative; */
+    /* float: right; */
 }
 
 .loginbox ul{

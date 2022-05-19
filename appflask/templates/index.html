@@ -2,60 +2,72 @@
 
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>A Personal Trading Site</title>
-
-        <!-- CSS -->
-        <!-- <link rel="stylesheet" href= {{ url_for('static', filename='css/index.css') }}> -->
-        <link rel="stylesheet" href="static/css/index.css?after">
+        <title>트레이딩 사이트</title>
+        <meta charset="UTF-8" >
+        <link rel="stylesheet" href="static/css/index.css">
     </head>
 
     <body>
-
-        <div id="page">
-            <header>
-                <div id="nav">
-                    <div id="logo">
-                        <!-- <img src={{ url_for('static', filename='images/dgu-logo.jpg') }} alt="logo"> -->
-                        <img src="static/images/dgu-logo.jpg?v=1">
-                    </div>
-                </div>
-                <div id="top_menu">
-                    <a href="./">HOME</a>
-                    |
-                    <a href="./login">LOGIN</a>
-                    |
-                    <a href="">REGISTER</a>
-                </div>
-            </header>
-
-            <section id="serv_list">
-                <div id="container">
-                    <div id="title">
-                        <h1>PRODUCT LIST</h1>
-                        <!--keywords line..? maybe-->
-                    </div>
-                    <div id="item_list">
-                        <div id="product">
-                            <div id="product_img">
-                                <img src={{ url_for('static', filename='images/product.jpg') }} alt="">
-                            </div>
-
-                            <div id="product_text">
-                                <h2>product Name</h2>
-                                <h3>price</h3>
-                                <form>
-                                    <a href="">
-                                        <input type="button" value="click here">
-                                    </a>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+        <div class="navbar">
+            <a class="logo" href="./">
+            <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            </a>
+            <ul>
+                <li><a href="./login">로그인</a></li>
+                <li><a href="./signup">회원가입</a></li>
+            </ul>
         </div>
+    
+        <h1>Product</h1>
+        <div class="products">
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <a href="#">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a>
+            <div class="clearfix"></div>
+        </div>
+    
+        <div class="footer"></div>
     </body>
 </html>

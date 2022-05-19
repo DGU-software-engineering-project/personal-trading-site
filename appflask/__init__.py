@@ -11,15 +11,13 @@ app.secret_key = 'software_engineering'
 def index():
     return render_template('index.html')
 
-@app.route('/login', methods == ['GET', 'POST'])
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('login.html')
-    else:
-        id = request.form['id']
-        pw = request.form['pw']
+    return render_template('login.html')
+
+@app.route('/signup', methods = ['GET', 'POST'])
+def sign_up():
+    return render_template('sign_up.html')
         
-
-
 if __name__ == '__main__':
     app.run()
