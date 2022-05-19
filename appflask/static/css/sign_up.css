@@ -105,7 +105,7 @@ button{ cursor: pointer; } /* 모든 버튼에 마우스손모양 처리 */
 
 .nameInput{
     width: 45%;
-    /* display: inline-block; */
+    /* display: inline; */
     /* position: relative; */
     /* float: right; */
 }

@@ -13,12 +13,21 @@
             <img src="static/images/dgu-logo.jpg?v=1" height="70px">
             </a>
             <ul>
-                <li><a href="./login">로그인</a></li>
-                <li><a href="./signup">회원가입</a></li>
+                {% if isLoggedin %}
+                    <li><a href="#">{{username}}님 환영합니다!</a></li>
+                    <li><a href="./mypage">마이페이지</a></li>
+                    <li><a href="./logout">로그아웃</a></li>
+                {% else %}
+                    <li><a href="./login">로그인</a></li>
+                    <li><a href="./signup">회원가입</a></li>
+                {% endif %}
             </ul>
         </div>
     
         <h1>Product</h1>
+        <!-- 키워드 팔로우 목록 추가할 자리-->
+
+        <!-- end-->
         <div class="products">
             <a href="#">
                 <img src="static/images/product.jpg">
