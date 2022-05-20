@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request, url_for, abort
+from flask import Flask,render_template,redirect,request, url_for, abort,session
 import pymongo
 from bson.json_util import loads, dumps
 app = Flask(__name__)
@@ -6,7 +6,7 @@ client = pymongo.MongoClient("mongodb+srv://admin:1234@cluster0.il12x.mongodb.ne
 db = client['tradingSiteDB']
 users = db.usersDB
 items = db.itemsDB
-
+app.config.update(SECRET_KEY='secret')
 @app.route('/')
 def home():
     entries = list(items.find())
@@ -27,7 +27,8 @@ def login():
         userinfo = users.find_one({"ID" :request.form['name']})
         if userinfo:
             if userinfo["PW"] == request.form['password']:
-                return "success"
+                session['ID']=request.form['name']
+                return render_template('home.html',isLoggedin=True, username=request.form['name'])
             else:
                 return "password incorrect"
         else:
