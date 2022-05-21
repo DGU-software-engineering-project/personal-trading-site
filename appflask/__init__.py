@@ -31,6 +31,9 @@ def mypage():
 def item_register():
     return render_template('item_register.html')
 
+@app.route('/item_edit', methods = ['GET', 'POST'])
+def item_edit():
+    return render_template('item_edit.html')
 
 if __name__ == '__main__':
     app.run()
