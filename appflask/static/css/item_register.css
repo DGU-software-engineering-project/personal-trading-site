@@ -49,6 +49,7 @@ body h1{
 
 .productRegisterBox{
     padding: 0; margin: 0;
+    height: 400px;
 }
 
 .productRegisterBox form{
@@ -86,6 +87,34 @@ body h1{
     border: none; background-color: #ededed;
     padding: 0 20px;
     box-sizing: border-box;
+}
+
+
+.productButton{
+    display: block;
+    width: 85px;
+    height: 40px;
+    float: right;
+    margin: 0 auto;
+    margin-right: 30px;
+    margin-top: 10px;
+    border: none;
+    background-color: #1673ea;
+    color: #fff; font-size: 14px; font-weight:bold;
+}
+
+
+.pictureButton{
+    display: block;
+    width: 85px;
+    height: 40px;
+    float: left;
+    margin: 0 auto;
+    margin-left: 157.5px;
+    margin-top: 10px;
+    border: none;
+    background-color: #1673ea;
+    color: #fff; font-size: 14px; font-weight:bold;
 }
 
 .products {
