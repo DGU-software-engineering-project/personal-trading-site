@@ -4,7 +4,7 @@
     <head>
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
-        <link rel="stylesheet" href="static/css/item_spec.css?after">
+        <link rel="stylesheet" href="static/css/item_register.css?after">
     </head>
 
     <body>
@@ -17,23 +17,33 @@
             </ul>
         </div>
     
-        <!-- <h1>{{username}}의 상품</h1> -->
-        <h1>Username의 상품</h1>
+        <h1>상품 등록</h1>
 
         <div class="products">
             <img src="static/images/product.jpg">
 
-            <!-- <p class="productName">Product example</p> -->
-            <br>
-            <h2 style="font-size: 20px">Product Name</h2>
+            <div class="productRegisterBox">
+                <form action="/item_register" method="POST">
+                    <fieldset>
+                        <label for="productName">상품명</label>
+                        <input type="text" id="productName" placeholder="내용을 입력해주세요.">
 
-            <h2>100,000₩</h2>
-            <!-- <h2>{{productPrice}}₩</h2> -->
+                        <label for="productPrice">가격</label>
+                        <input type="text" id="productPrice" placeholder="내용을 입력해주세요.">
 
-            <p class="explain">아크테릭스 베타 22ss 자켓입니다. 
-                3월달쯤 구매해서 한번 입고 안 어울려서 판매합니다. 
-                하자는 없고 사이즈는 s로 남성용이긴한데 여성분들도 오버핏으로 입을만 한 정도입니다. 
-                남성분들은 160후반 이시거나 170초반인데 통통하지 않으시다면 충분히 입을 수 있는 사이즈 입니다.</p>
+                        <label for="productExplain">상품 설명</label>
+                        <!-- <input type="text" id="productExplain" placeholder="내용을 입력해주세요."> -->
+                        <textarea class="productExplain"></textarea>
+
+                    </fieldset>
+                </form>
+            </div>
+            
+            <button class="productRegisterBotton">상품 등록</button>
+
+
+
+
             <div class="clearfix"></div>
         </div>
     

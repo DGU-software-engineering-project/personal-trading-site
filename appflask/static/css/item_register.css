@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+}
+  
+body {
+    margin: 0;
+    min-width: 992px;
+    font-family: "Helvetica";
+}
+  
+.navbar{
+    height: 60px;
+    padding-left: 30px;
+}
+  
+.logo{
+    line-height: 60px;
+    float: left;
+}
+  
+.logo img{
+    vertical-align: middle;
+}
+
+.navbar ul{
+    float: right;
+}
+  
+.navbar li{
+    list-style-type: none;
+    float: left;
+    margin-right: 30px;
+}
+  
+.navbar a{
+    text-decoration: none;
+    color: black;
+    /* font-style: bold; */
+    font-size: 13px;
+}
+  
+body h1{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 120px;
+    font-size: 30px;
+    color: #000000;
+}
+
+.productRegisterBox{
+    padding: 0; margin: 0;
+}
+
+.productRegisterBox form{
+    width: 100%; height:275px;
+    background-color: #fff;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.productRegisterBox fieldset{
+    border: none;
+    height: 275px;
+}
+
+.productRegisterBox label{
+    display: block;
+    font-size: 20px; color: #333;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.productRegisterBox input{
+    display: block;
+    width: 100%; height: 50px;
+    margin-bottom: 10px;
+    border: none; background-color: #ededed;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.productRegisterBox textarea{
+    resize: none;
+    width: 100%; height: 180px;
+    margin-bottom: 10px;
+    border: none; background-color: #ededed;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.products {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    width: 900px;
+    /* text-align: center; */
+}
+
+.products img{
+    width: 400px;
+    height: 400px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    float: left;
+    font-size: 16px;
+}
+
+.productName{
+    margin-top: 30px;
+    font-size: 25px;
+    font-style: bold;
+}
+  
+.price .explain{
+    margin-top: 4px;
+    margin-bottom: 80px;
+}
+  
+.clearfix{
+    clear: both;
+}
+  
+.footer{
+    text-align: center;
+}
+  
+.footer img{
+    margin-top: 40px;
+    height: 20px;
+    margin-bottom: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

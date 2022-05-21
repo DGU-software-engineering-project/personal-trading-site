@@ -26,7 +26,11 @@ def item():
 @app.route('/mypage', methods = ['GET', 'POST'])
 def mypage():
     return render_template('mypage.html')
-        
+
+@app.route('/item_register', methods = ['GET', 'POST'])
+def item_register():
+    return render_template('item_register.html')
+
 
 if __name__ == '__main__':
     app.run()
