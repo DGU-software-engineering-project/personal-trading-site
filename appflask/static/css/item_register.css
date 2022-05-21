@@ -53,7 +53,7 @@ body h1{
 }
 
 .productRegisterBox form{
-    width: 100%; height:275px;
+    width: 100%; height: 400px;
     background-color: #fff;
     padding: 0px;
     box-sizing: border-box;
@@ -61,7 +61,7 @@ body h1{
 
 .productRegisterBox fieldset{
     border: none;
-    height: 275px;
+    height: 400px;
 }
 
 .productRegisterBox label{
@@ -77,18 +77,20 @@ body h1{
     margin-bottom: 10px;
     border: none; background-color: #ededed;
     padding: 0 20px;
+    font-size: 15px;
     box-sizing: border-box;
 }
 
 .productRegisterBox textarea{
     resize: none;
+    /* display: block; */
     width: 100%; height: 180px;
     margin-bottom: 10px;
     border: none; background-color: #ededed;
-    padding: 0 20px;
+    padding: 10px 20px;
+    font-size: 15px;
     box-sizing: border-box;
 }
-
 
 .productButton{
     display: block;
@@ -102,7 +104,6 @@ body h1{
     background-color: #1673ea;
     color: #fff; font-size: 14px; font-weight:bold;
 }
-
 
 .pictureButton{
     display: block;
@@ -133,17 +134,6 @@ body h1{
     color: black;
     float: left;
     font-size: 16px;
-}
-
-.productName{
-    margin-top: 30px;
-    font-size: 25px;
-    font-style: bold;
-}
-  
-.price .explain{
-    margin-top: 4px;
-    margin-bottom: 80px;
 }
   
 .clearfix{
