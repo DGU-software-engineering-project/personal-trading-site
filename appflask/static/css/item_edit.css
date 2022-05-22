@@ -121,8 +121,9 @@ body h1{
     width: 100%; /* 가로 사이즈 */
     padding: 10px; /* 내부여백 */
     padding-left: 12px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
-    background: url(./arrow_down.png) no-repeat right 50%; /* 화살표 위치 */
+    background: url(../images/arrow_down.png) no-repeat right 50%; /* 화살표 위치 */
     background-size: 30px; /* 화살표 크기 */
     border-radius: 4px;
     box-sizing: border-box;
@@ -133,7 +134,7 @@ body h1{
     color: #000;
     outline:none;
 }
-.bo_w_select:hover {border: 1px solid #aaa;} /* 마우스오버 */
+.productStatus:hover {border: 1px solid #aaa;} /* 마우스오버 */
 
 .products {
     margin-left: auto;
