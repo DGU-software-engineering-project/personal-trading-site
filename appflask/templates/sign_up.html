@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>트레이딩 사이트</title>
+
+        <!-- CSS -->
+        <!-- <link rel="stylesheet" href= {{ url_for('static', filename='css/index.css') }}> -->
+        <link rel="stylesheet" href="static/css/sign_up.css?after">
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a class="logo" href="./">
+              <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            </a>
+            <ul>
+              <li><a href="./login">로그인</a></li>
+              <li><a href="./signup">회원가입</a></li>
+            </ul>
+          </div>
+
+            <div class="loginbox">
+                <h1>회원가입</h1>
+                <form action="/signup" method="post">
+                  <fieldset>
+                    <label for="loginid">아이디</label>
+                    <input type="text" id="loginid" placeholder="Username">
+
+                    <label for="loginpw">비밀번호</label>
+                    <input type="password" id="loginpw" placeholder="Password">
+
+                    <label for="loginpwcon">비밀번호 확인</label>
+                    <input type="password" id="loginpwcon" placeholder="Password confirm">
+
+                    <label for="name">이름</label>
+                    <div class="nameInput">
+                      <input type="text" id="name" placeholder="성">
+                      <input type="text" id="name" placeholder="이름">
+                    </div>
+
+                    <button type="submit">로그인</button>
+                  </fieldset>
+                </form>
+              </div>
+        </div>
+    </body>
+</html>

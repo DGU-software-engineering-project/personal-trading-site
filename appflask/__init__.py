@@ -36,5 +36,28 @@ def login():
     else:
         return render_template('signin.html')
 
+@app.route('/signup', methods = ['GET', 'POST'])
+def sign_up():
+    return render_template('sign_up.html')
+        
+@app.route('/item', methods = ['GET', 'POST'])
+def item():
+    return render_template('item_spec.html')
+
+@app.route('/mypage', methods = ['GET', 'POST'])
+def mypage():
+    return render_template('mypage.html')
+
+@app.route('/item_register', methods = ['GET', 'POST'])
+def item_register():
+    return render_template('item_register.html')
+
+@app.route('/item_edit', methods = ['GET', 'POST'])
+def item_edit():
+    return render_template('item_edit.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
