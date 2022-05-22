@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>트레이딩 사이트</title>
 
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <!-- Title Page-->
-    <title>signin</title>
-</head>
+        <!-- <link rel="stylesheet" href= {{ url_for('static', filename='css/login.css') }}> -->
+        <link rel="stylesheet" href="static/css/login.css?after">
+    </head>
 
-<body>
-    <div>
-        <div>
-            <div>
-                <div>
-                    <h2>signin</h2>
-                    <form method="POST" action = "./signin">
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Name" name="name">
-                        </div>
-                        <div class="input-group">
-                            <input class="input--style-2" type="password" placeholder="Password" name="password">
-                        </div>
-                        <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    <body>
+        <div class="navbar">
+            <a class="logo" href="./">
+              <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            </a>
+            <ul>
+              <li><a href="./login">로그인</a></li>
+              <li><a href="./signup">회원가입</a></li>
+            </ul>
+          </div>
+
+            <div class="loginbox">
+                <h1>로그인</h1>
+                <form action="./signin" method="post">
+                  <fieldset>
+                    <label for="loginid">아이디</label>
+                    <input type="text" id="loginid" placeholder="Username">
+                    <label for="loginpw">비밀번호</label>
+                    <input type="password" id="loginpw" placeholder="Password">
+
+                    <button type="submit">로그인</button>
+                  </fieldset>
+                </form>
+              </div>
         </div>
-    </div>
-
-    
-
-</body>
-
+    </body>
 </html>
