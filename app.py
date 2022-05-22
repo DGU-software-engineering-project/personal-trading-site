@@ -24,11 +24,11 @@ def viewitems():
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        userinfo = users.find_one({"ID" :request.form['name']})
+        userinfo = users.find_one({"ID" :request.form['loginid']})
         if userinfo:
-            if userinfo["PW"] == request.form['password']:
-                session['ID']=request.form['name']
-                return render_template('home.html',isLoggedin=True, username=request.form['name'])
+            if userinfo["PW"] == request.form['loginpw']:
+                session['ID']=request.form['loginid']
+                return render_template('home.html',isLoggedin=True, username=request.form['loginid'])
             else:
                 return "password incorrect"
         else:
