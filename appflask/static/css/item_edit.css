@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+}
+  
+body {
+    margin: 0;
+    min-width: 992px;
+    font-family: "Helvetica";
+}
+  
+.navbar{
+    height: 60px;
+    padding-left: 30px;
+}
+  
+.logo{
+    line-height: 60px;
+    float: left;
+}
+  
+.logo img{
+    vertical-align: middle;
+}
+
+.navbar ul{
+    float: right;
+}
+  
+.navbar li{
+    list-style-type: none;
+    float: left;
+    margin-right: 30px;
+}
+  
+.navbar a{
+    text-decoration: none;
+    color: black;
+    /* font-style: bold; */
+    font-size: 13px;
+}
+  
+body h1{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 120px;
+    font-size: 30px;
+    color: #000000;
+}
+
+.productRegisterBox{
+    padding: 0; margin: 0;
+    height: 400px;
+}
+
+.productRegisterBox form{
+    width: 100%; height: 400px;
+    background-color: #fff;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.productRegisterBox fieldset{
+    border: none;
+    height: 400px;
+}
+
+.productRegisterBox label{
+    display: block;
+    font-size: 20px; color: #333;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.productRegisterBox input{
+    display: block;
+    width: 100%; height: 50px;
+    margin-bottom: 10px;
+    border: none; background-color: #ededed;
+    padding: 0 20px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.productRegisterBox textarea{
+    resize: none;
+    /* display: block; */
+    width: 100%; height: 180px;
+    margin-bottom: 10px;
+    border: none; background-color: #ededed;
+    padding: 10px 20px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.productButton{
+    display: block;
+    width: 85px;
+    height: 40px;
+    float: right;
+    margin: 0 auto;
+    margin-right: 30px;
+    border: none;
+    background-color: #1673ea;
+    color: #fff; font-size: 14px; font-weight:bold;
+}
+
+.pictureButton{
+    display: block;
+    width: 85px;
+    height: 40px;
+    float: left;
+    margin: 0 auto;
+    margin-left: 157.5px;
+    margin-top: 10px;
+    border: none;
+    background-color: #1673ea;
+    color: #fff; font-size: 14px; font-weight:bold;
+}
+
+.productStatus {
+    width: 100%; /* 가로 사이즈 */
+    padding: 10px; /* 내부여백 */
+    padding-left: 12px;
+    border: 1px solid #ddd;
+    background: url(./arrow_down.png) no-repeat right 50%; /* 화살표 위치 */
+    background-size: 30px; /* 화살표 크기 */
+    border-radius: 4px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 12px;
+    color: #000;
+    outline:none;
+}
+.bo_w_select:hover {border: 1px solid #aaa;} /* 마우스오버 */
+
+.products {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    width: 900px;
+    /* text-align: center; */
+}
+
+.products img{
+    width: 400px;
+    height: 400px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    float: left;
+    font-size: 16px;
+}
+  
+.clearfix{
+    clear: both;
+}
+  
+.footer{
+    text-align: center;
+}
+  
+.footer img{
+    margin-top: 40px;
+    height: 20px;
+    margin-bottom: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

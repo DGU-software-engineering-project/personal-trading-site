@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>트레이딩 사이트</title>
+        <meta charset="UTF-8" >
+        <link rel="stylesheet" href="static/css/item_edit.css?after">
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a class="logo" href="./">
+            <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            </a>
+            <ul>
+                <li><a href="./logout">로그아웃</a></li>   
+            </ul>
+        </div>
+    
+        <h1>상품 등록</h1>
+
+        <div class="products">
+            <img src="static/images/product.jpg">
+
+            <div class="productRegisterBox">
+                <form action="/item_register" method="POST">
+                    <fieldset>
+                        <label for="productName">상품명</label>
+                        <input type="text" id="productName" placeholder="내용을 입력해주세요.">
+
+                        <label for="productPrice">가격</label>
+                        <input type="text" id="productPrice" placeholder="내용을 입력해주세요.">
+
+                        <label for="productExplain">상품 설명</label>
+                        <textarea class="productExplain" id="productExplain" placeholder="내용을 입력해주세요."></textarea>
+
+                        <select class="productStatus">
+                            <option value="forSale">판매 중</option>
+                            <option value="soldOut">판매 완료</option>
+                        </select>
+                        
+
+                        <button class="productButton" type="submit">상품 등록</button>
+                    </fieldset>
+                </form>
+            </div>
+            <button class="pictureButton">사진 등록</button>
+
+            <div class="clearfix"></div>
+        </div>
+    
+        <div class="footer"></div>
+    </body>
+</html>
