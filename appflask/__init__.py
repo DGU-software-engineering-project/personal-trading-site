@@ -8,9 +8,9 @@ users = db.usersDB
 items = db.itemsDB
 app.config.update(SECRET_KEY='secret')
 @app.route('/')
-def home():
+def index():
     entries = list(items.find())
-    return render_template('home.html', entries=entries)
+    return render_template('index.html', entries=entries)
 
 @app.route('/users')
 def viewusers():
@@ -24,11 +24,13 @@ def viewitems():
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        userinfo = users.find_one({"ID" :request.form['loginid']})
+        id=request.form['loginid']
+        pw=request.form['loginpw']
+        userinfo = users.find_one({"ID" :id})
         if userinfo:
-            if userinfo["PW"] == request.form['loginpw']:
-                session['ID']=request.form['loginid']
-                return render_template('home.html',isLoggedin=True, username=request.form['loginid'])
+            if userinfo["PW"] == pw:
+                session['ID']=id
+                return render_template('index.html',isLoggedin=True, username=request.form['loginid'])
             else:
                 return "password incorrect"
         else:
