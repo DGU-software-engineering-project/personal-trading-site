@@ -42,18 +42,20 @@ body {
 body h1{
     text-align: center;
     margin-top: 80px;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
     font-size: 30px;
     color: #000000;
 }
 
 .productRegisterBox{
     padding: 0; margin: 0;
-    height: 400px;
+    height: 500px;
+    width: 500px;
+    float: right;
 }
 
 .productRegisterBox form{
-    width: 100%; height: 400px;
+    width: 100%; height: 500px;
     background-color: #fff;
     padding: 0px;
     box-sizing: border-box;
@@ -61,7 +63,7 @@ body h1{
 
 .productRegisterBox fieldset{
     border: none;
-    height: 400px;
+    height: 500px;
 }
 
 .productRegisterBox label{
@@ -99,6 +101,7 @@ body h1{
     float: right;
     margin: 0 auto;
     margin-right: 30px;
+    margin-top: 10px;
     border: none;
     background-color: #1673ea;
     color: #fff; font-size: 14px; font-weight:bold;
@@ -110,7 +113,7 @@ body h1{
     height: 40px;
     float: left;
     margin: 0 auto;
-    margin-left: 157.5px;
+    margin-left: 182.5px;
     margin-top: 10px;
     border: none;
     background-color: #1673ea;
@@ -118,10 +121,13 @@ body h1{
 }
 
 .productStatus {
-    width: 100%; /* 가로 사이즈 */
+    display: block;
+    width: 100px; 
+    /* width: 100%; */
     padding: 10px; /* 내부여백 */
     padding-left: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
+    /* margin-right: 100px; */
     border: 1px solid #ddd;
     background: url(../images/arrow_down.png) no-repeat right 50%; /* 화살표 위치 */
     background-size: 30px; /* 화살표 크기 */
@@ -132,7 +138,7 @@ body h1{
     appearance: none;
     font-size: 12px;
     color: #000;
-    outline:none;
+    outline: none;
 }
 .productStatus:hover {border: 1px solid #aaa;} /* 마우스오버 */
 
@@ -140,14 +146,14 @@ body h1{
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    width: 900px;
+    width: 950px;
     /* text-align: center; */
 }
 
 .products img{
-    width: 400px;
-    height: 400px;
-    margin-right: 20px;
+    width: 450px;
+    height: 450px;
+    /* margin-right: 20px; */
     text-decoration: none;
     color: black;
     float: left;
