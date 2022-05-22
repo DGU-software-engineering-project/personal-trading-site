@@ -30,7 +30,7 @@ def login():
         if userinfo:
             if userinfo["PW"] == pw:
                 session['ID']=id
-                return render_template('index.html',isLoggedin=True, username=request.form['loginid'])
+                return redirect(url_for('index'))
             else:
                 return "password incorrect"
         else:
