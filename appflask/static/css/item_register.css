@@ -42,18 +42,20 @@ body {
 body h1{
     text-align: center;
     margin-top: 80px;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
     font-size: 30px;
     color: #000000;
 }
 
 .productRegisterBox{
     padding: 0; margin: 0;
-    height: 400px;
+    height: 450px;
+    width: 500px;
+    float: right;
 }
 
 .productRegisterBox form{
-    width: 100%; height: 400px;
+    width: 100%; height: 500px;
     background-color: #fff;
     padding: 0px;
     box-sizing: border-box;
@@ -61,7 +63,7 @@ body h1{
 
 .productRegisterBox fieldset{
     border: none;
-    height: 400px;
+    height: 500px;
 }
 
 .productRegisterBox label{
@@ -83,8 +85,8 @@ body h1{
 
 .productRegisterBox textarea{
     resize: none;
-    /* display: block; */
-    width: 100%; height: 180px;
+    display: block;
+    width: 100%; height: 230px;
     margin-bottom: 10px;
     border: none; background-color: #ededed;
     padding: 10px 20px;
@@ -110,7 +112,7 @@ body h1{
     height: 40px;
     float: left;
     margin: 0 auto;
-    margin-left: 157.5px;
+    margin-left: 182.5px;
     margin-top: 10px;
     border: none;
     background-color: #1673ea;
@@ -121,14 +123,14 @@ body h1{
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    width: 900px;
+    width: 950px;
     /* text-align: center; */
 }
 
 .products img{
-    width: 400px;
-    height: 400px;
-    margin-right: 20px;
+    width: 450px;
+    height: 450px;
+    /* margin-right: 20px; */
     text-decoration: none;
     color: black;
     float: left;
