@@ -1,19 +1,42 @@
-#from flask import Flask, g, Response, make_response
-from flask import Flask, render_template, request, redirect, url_for, abort, session
-
+from flask import Flask,render_template,redirect,request, url_for, abort,session
+import pymongo
+from bson.json_util import loads, dumps
 app = Flask(__name__)
-app.debug = True
-
-app.secret_key = 'software_engineering'
-
-
+client = pymongo.MongoClient("mongodb+srv://admin:1234@cluster0.il12x.mongodb.net/tradingSiteDB?retryWrites=true&w=majority")
+db = client['tradingSiteDB']
+users = db.usersDB
+items = db.itemsDB
+app.config.update(SECRET_KEY='secret')
 @app.route('/')
 def index():
-    return render_template('index.html')
+    entries = list(items.find())
+    return render_template('index.html', entries=entries)
 
-@app.route('/login', methods = ['GET', 'POST'])
+@app.route('/users')
+def viewusers():
+    tmp = users.find()
+    return dumps(tmp)
+
+@app.route('/items')
+def viewitems():
+    tmp = items.find()
+    return dumps(tmp)
+@app.route('/signin',methods = ['POST', 'GET'])
 def login():
-    return render_template('login.html')
+    if request.method == 'POST':
+        id=request.form['loginid']
+        pw=request.form['loginpw']
+        userinfo = users.find_one({"ID" :id})
+        if userinfo:
+            if userinfo["PW"] == pw:
+                session['ID']=id
+                return redirect(url_for('index'))
+            else:
+                return "password incorrect"
+        else:
+            return "Id incorrect"
+    else:
+        return render_template('signin.html')
 
 @app.route('/signup', methods = ['GET', 'POST'])
 def sign_up():
@@ -36,4 +59,7 @@ def item_edit():
     return render_template('item_edit.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
+
+
+
