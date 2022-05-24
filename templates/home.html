@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <div class="navbar">
+
+        <a class="logo" href="./">
+        <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+        </a>
+
+        <ul>
+            {% if session['ID'] %}
+                <li><a href="#">{{ session['ID'] }}님 환영합니다!</a></li>
+                <li><a href="./mypage">마이페이지</a></li>
+                <li><a href="./logout">로그아웃</a></li>
+            {% else %}
+                <li><a href="./login">로그인</a></li>
+                <li><a href="./signup">회원가입</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <script>
+        let itemsURL = './items';
+        let request = new XMLHttpRequest();
+        request.open('GET', itemsURL)
+        request.responseType = 'json';
+        request.send();
+        request.onload = function() {
+            let items = request.response;
+            for(key in items){
+                console.log("item :"+items[key].item+" , price :"+items[key].price);
+		    }
+        }
+        
+    </script>
+    <nav style="display: flex">
+        <a href="/"><img src="../static/tmp.svg" alt="소공 프로젝트"></a>
+        <div style="margin-left: auto">
+            <a href="./signin">signin</a>
+            <a href="./signup">signup</a>
+        </div>
+    </nav>
+    <ul class=entries>
+        {% for entry in entries %}
+          <li><h2>{{ entry.item }}</h2>가격 : {{ entry.price }} <img style="width: 90px; height:120px;" src="{{ entry.photo }}" alt="소공 프로젝트">
+        {% else %}
+          <li><em>Unbelievable.  No entries here so far</em>
+        {% endfor %}
+    </ul>
+    <!-- <script>
+        let itemsURL = 'http://localhost/items';
+        let request = new XMLHttpRequest();
+        request.open('GET', itemsURL)
+        request.responseType = 'json';
+        request.send();
+        request.onload = function() {
+            var items = request.response;
+            populateHeader(itemsInfo);
+            showHeroes(itemsInfo);
+        }
+    </script> -->
+</body>
+
+</html>
