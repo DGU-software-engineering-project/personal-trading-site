@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import re
-from flask import Flask,render_template,redirect,request, url_for, abort,session,flash
-=======
 from flask import Flask,render_template,redirect,request, url_for, abort,session
->>>>>>> 7d5690c4c059e2065f6c0fba392a06be06736f8a
 import pymongo
 from bson.json_util import loads, dumps
 app = Flask(__name__)
@@ -16,32 +11,20 @@ app.config.update(SECRET_KEY='secret')
 def index():
     entries = list(items.find())
     return render_template('index.html', entries=entries)
-<<<<<<< HEAD
 
 @app.route('/users')
 def viewusers():
     tmp = users.find()
     return dumps(tmp)
 
-=======
-
-@app.route('/users')
-def viewusers():
-    tmp = users.find()
-    return dumps(tmp)
-
->>>>>>> 7d5690c4c059e2065f6c0fba392a06be06736f8a
 @app.route('/items')
 def viewitems():
     tmp = items.find()
     return dumps(tmp)
-<<<<<<< HEAD
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
-=======
->>>>>>> 7d5690c4c059e2065f6c0fba392a06be06736f8a
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
