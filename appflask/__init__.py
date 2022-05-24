@@ -1,4 +1,5 @@
-from flask import Flask,render_template,redirect,request, url_for, abort,session
+import re
+from flask import Flask,render_template,redirect,request, url_for, abort,session,flash
 import pymongo
 from bson.json_util import loads, dumps
 app = Flask(__name__)
@@ -21,6 +22,10 @@ def viewusers():
 def viewitems():
     tmp = items.find()
     return dumps(tmp)
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -40,8 +45,17 @@ def login():
 
 @app.route('/signup', methods = ['GET', 'POST'])
 def sign_up():
-    return render_template('sign_up.html')
-        
+    if request.method == 'POST':
+        id=request.form['loginid']
+        pw=request.form['loginpw']
+        name=request.form['name']
+        userdic = {"name":name,"ID":id,"PW":pw, "FOLLOWING":[]}
+        users.insert_one(userdic)
+        flash('signup success')
+        return redirect(url_for('index'))
+    else:
+        return render_template('sign_up.html')
+
 @app.route('/item', methods = ['GET', 'POST'])
 def item():
     return render_template('item_spec.html')
