@@ -7,6 +7,8 @@ db = client['tradingSiteDB']
 users = db.usersDB
 items = db.itemsDB
 app.config.update(SECRET_KEY='secret')
+app.debug = True
+
 @app.route('/')
 def index():
     entries = list(items.find())
@@ -59,7 +61,7 @@ def item_edit():
     return render_template('item_edit.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 
 
