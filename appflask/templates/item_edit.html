@@ -20,7 +20,7 @@
         <h1>상품 등록</h1>
 
         <div class="products">
-            <img src="static/images/product.jpg">
+            <img src="{{ url_for('static', filename=image_file) }}">
 
             <div class="productRegisterBox">
                 <form action="/item_edit" method="POST">
