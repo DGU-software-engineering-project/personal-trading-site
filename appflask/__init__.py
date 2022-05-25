@@ -54,7 +54,8 @@ def mypage():
 
 @app.route('/item_register', methods = ['GET', 'POST'])
 def item_register():
-    return render_template('item_register.html')
+    if request.method == 'GET':
+        return render_template('item_register.html', image_file = '../static/images/default_image.jpg')
 
 @app.route('/item_edit', methods = ['GET', 'POST'])
 def item_edit():
