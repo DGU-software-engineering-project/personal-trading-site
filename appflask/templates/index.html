@@ -25,13 +25,46 @@
                 {% endif %}
             </ul>
         </div>
-    
+        
         <h1>Product</h1>
         <!-- 키워드 팔로우 목록 추가할 자리-->
 
+        
         <!-- end-->
+
+        <script>
+            let itemsURL = './items';
+            let request = new XMLHttpRequest();
+            request.open('GET', itemsURL)
+            request.responseType = 'json';
+            request.send();
+            request.onload = function() {
+                let items = request.response;
+                for(key in items){
+                    console.log("item :"+items[key].item+" , price :"+items[key].price);
+                }
+            }
+            
+        </script>
+
         <div class="products">
 
+            {% for entry in entries %}
+                <a href="./item">
+                    <img src="{{ entry.photo }}">
+                    <p>{{ entry.item }}</p>
+                    <p class="price">{{ entry.price }}</p>
+                </a>
+            {% else %}
+                <p>Unbelievable.  No entries here so far</p>
+            {% endfor %}
+
+            <!-- <a href="./item">
+                <img src="static/images/product.jpg">
+                <p>Product example</p>
+                <p class="price">100,000</p>
+            </a> -->
+<!-- 
             <a href="./item">
                 <img src="static/images/product.jpg">
                 <p>Product example</p>
@@ -78,13 +111,7 @@
                 <img src="static/images/product.jpg">
                 <p>Product example</p>
                 <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
+            </a> -->
 
             <div class="clearfix"></div>
         </div>
