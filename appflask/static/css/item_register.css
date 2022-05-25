@@ -94,6 +94,10 @@ body h1{
     box-sizing: border-box;
 }
 
+button{
+    cursor: pointer;
+}
+
 .productButton{
     display: block;
     width: 85px;
