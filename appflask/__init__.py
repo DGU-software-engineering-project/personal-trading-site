@@ -59,7 +59,8 @@ def item_register():
 
 @app.route('/item_edit', methods = ['GET', 'POST'])
 def item_edit():
-    return render_template('item_edit.html')
+    if request.method == 'GET':
+        return render_template('item_edit.html', image_file='../static/images/default_image.jpg')
 
 if __name__ == '__main__':
     app.run()
