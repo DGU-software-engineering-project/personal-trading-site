@@ -21,7 +21,10 @@
 
         <div class="products">
             <img src="static/images/product.jpg">
-
+            <form action="/file_upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <input type="submit"/>
+            </form>
             <div class="productRegisterBox">
                 <form action="/item_register" method="POST">
                     <fieldset>
