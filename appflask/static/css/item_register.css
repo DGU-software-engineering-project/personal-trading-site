@@ -110,18 +110,6 @@ button{
     color: #fff; font-size: 14px; font-weight:bold;
 }
 
-/* .pictureButton{
-    display: block;
-    width: 85px;
-    height: 40px;
-    float: left;
-    margin: 0 auto;
-    margin-left: 182.5px;
-    margin-top: 10px;
-    border: none;
-    background-color: #1673ea;
-    color: #fff; font-size: 14px; font-weight:bold;
-} */
 .fileUploadDesign button {
     display: block;
     width: 85px;
@@ -136,17 +124,7 @@ button{
 }
 
 .fileUploadDesign input {
-    /* display: block; */
     display: none;
-    /* width: 85px;
-    height: 40px;
-    float: left;
-    margin: 0 auto;
-    margin-left: 182.5px;
-    margin-top: 10px;
-    border: none;
-    background-color: #1673ea;
-    color: #fff; font-size: 14px; font-weight:bold; */
 }
 
 .products {
@@ -154,13 +132,11 @@ button{
     margin-right: auto;
     padding: 0;
     width: 950px;
-    /* text-align: center; */
 }
 
 .products img{
     width: 450px;
     height: 450px;
-    /* margin-right: 20px; */
     text-decoration: none;
     color: black;
     float: left;
