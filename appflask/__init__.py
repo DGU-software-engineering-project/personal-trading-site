@@ -12,7 +12,8 @@ app.debug = True
 @app.route('/')
 def index():
     entries = list(items.find())
-    return render_template('index.html', entries=entries)
+    usrs = list(users.find())
+    return render_template('index.html', entries=entries,users = usrs)
 
 @app.route('/users')
 def viewusers():
