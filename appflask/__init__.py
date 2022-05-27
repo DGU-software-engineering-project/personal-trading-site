@@ -14,26 +14,32 @@ app.config['UPLOAD_FOLDER'] = './personal-trading-site/appflask/static/images'
 def index():
     entries = list(items.find())
     return render_template('index.html', entries=entries)
-
-@app.route('/followees')
+# API들
+# user 목록 API
+@app.route('/users')
 def viewusers():
-    if 'ID' in session:
-        tmp = users.find_one({'ID': session['ID']},{'FOLLOWING':1})
-        return dumps(tmp)
-    return "login first"
-    
+    tmp = users.find()
+    return dumps(tmp)
+# 전체 item 목록 API
 @app.route('/items')
 def viewitems():
     tmp = items.find()
     return dumps(tmp)
+# 사진 불러오는 API
+@app.route('/images/<photo>')
+def viewphoto(photo):
+    return render_template('img.html', image_file='images/'+photo)
+# user 별 item 목록 API
 @app.route('/items/<userid>')
 def viewuseritems(userid):
     tmp = items.find({"ID": userid})
     return dumps(tmp)
+# logout API
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+# file upload API
 @app.route('/file_upload', methods = ['GET', 'POST'])
 def file_upload():
     if request.method == 'POST':
@@ -41,7 +47,7 @@ def file_upload():
         f.save(secure_filename(f.filename))
         f.save(os.path.join(app.config['UPLOAD_FOLDER'],f.filename))
     return redirect(url_for('item_register'))
-
+# 여기서부터 페이지들
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
