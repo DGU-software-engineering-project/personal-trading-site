@@ -35,11 +35,6 @@ def viewphoto(photo):
 def viewuseritems(userid):
     tmp = items.find({"ID": userid})
     return dumps(tmp)
-# item spec API objectid로 검색하면 됨.
-@app.route('/itemspec/<itemid>')
-def viewitemspec(itemid):
-    tmp = items.find_one({'_id': ObjectId(itemid)})
-    return render_template('item_spec.html',iteminfo = tmp)
 # logout API
 @app.route('/logout')
 def logout():
@@ -84,10 +79,11 @@ def sign_up():
     else:
         return render_template('sign_up.html')
 
-@app.route('/item', methods = ['GET', 'POST'])
-def item():
-    return render_template('item_spec.html')
-
+# itemspec/item의 objectid
+@app.route('/itemspec/<itemid>')
+def viewitemspec(itemid):
+    tmp = items.find_one({'_id': ObjectId(itemid)})
+    return render_template('item_spec.html',iteminfo = tmp)
 @app.route('/mypage', methods = ['GET', 'POST'])
 def mypage():
     return render_template('mypage.html')
