@@ -5,6 +5,8 @@
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
         <link rel="stylesheet" href="static/css/index.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="../static/js/mixitup.min.js"></script>
     </head>
 
     <body>
@@ -25,66 +27,49 @@
                 {% endif %}
             </ul>
         </div>
-    
+        
+
         <h1>Product</h1>
+
         <!-- 키워드 팔로우 목록 추가할 자리-->
 
+        <div class="container">
+            <h2>키워드 : </h2>
+            <button type="button" data-filter="all">전체</button>
+            <button type="button" data-filter=".clothes">옷</button>
+            <button type="button" data-filter=".shoes">신발</button>
+            <button type="button" data-filter=".food">음식</button>
+            {% if session['ID'] %}
+                <button type="button" data-filter=".">팔로우</button>
+            {% endif %}
+            <!-- 잊지 말고 팔로우한 사람만 보기 버튼 추가 하기-->
+        </div>
+
+        <script>
+            var mixer = mixitup('.products');
+        </script>
+
         <!-- end-->
+
         <div class="products">
+            {% for entry in entries %}
 
-            <a href="./item">
+                <div class="mix {{entry.keyword}}">
+                    <a href="/itemspec/{{entry._id}}">
+                        <img src="{{ entry.photo }}">
+                        <p>{{ entry.item }}</p>
+                        <p class="price">{{ entry.price }}</p>
+                    </a>
+                </div>
+            {% else %}
+                <p>Unbelievable.  No entries here so far</p>
+            {% endfor %}
+
+            <!-- <a href="./item">
                 <img src="static/images/product.jpg">
                 <p>Product example</p>
                 <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
-
-            <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a>
+            </a> -->
 
             <div class="clearfix"></div>
         </div>

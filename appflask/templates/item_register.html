@@ -5,6 +5,52 @@
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
         <link rel="stylesheet" href="static/css/item_register.css?after">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function (e) {
+                
+
+                $('#upload').on('click', function() {
+                    // e.preventDefault();
+                    $('#multiFiles').click();
+                    
+                    var form_data = new FormData();
+                    var ins = document.getElementById('multiFiles').files.length;
+
+                    if (ins == 0) {
+                        $('#msg').html('<span style="color: red">Select at least one file</span');
+                            return;
+                    }
+
+                    for (var x = 0; x < ins; x++) {
+                        form_data.append("files[]", document.getElementById('multiFiles').files[x]);
+                    }
+
+                    $.ajax({
+                        url: '/file_upload', // 라우팅할 곳
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(response) {
+                            $('msg').html('');
+                            $.each(response, function (key, data) {
+                                if (key !== 'message') {
+                                    $('#msg').append(key + ' -> ' + data + '<br/>');
+                                } else {
+                                    $('#msg').append(data + '<br/>');
+                                }
+                            })
+                        },
+                        error: function (response) {
+                            $('#msg').html(response.message);
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
 
     <body>
@@ -21,7 +67,10 @@
 
         <div class="products">
             <img src="static/images/product.jpg">
-
+            <form action="/file_upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <input type="submit"/>
+            </form>
             <div class="productRegisterBox">
                 <form action="/item_register" method="POST">
                     <fieldset>
@@ -37,7 +86,16 @@
                     </fieldset>
                 </form>
             </div>
-            <button class="pictureButton">사진 등록</button>
+            <!-- <button class="pictureButton" type="submit">사진 등록</button> -->
+            <div class="fileUploadDesign">
+                <dl>
+                    <p>
+                        <p id="msg"></p>
+                        <input type="file" id="multiFiles" name="files[]" multiple="multiple"/>
+                        <button id="upload">Upload</button>
+                    </p>
+                </dl>
+            </div>
 
             <div class="clearfix"></div>
         </div>
