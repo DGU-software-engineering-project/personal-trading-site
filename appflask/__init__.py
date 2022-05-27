@@ -38,8 +38,8 @@ def viewuseritems(userid):
 # item spec API objectid로 검색하면 됨.
 @app.route('/itemspec/<itemid>')
 def viewitemspec(itemid):
-    tmp = items.find({'_id': ObjectId(itemid)})
-    return dumps(tmp)
+    tmp = items.find_one({'_id': ObjectId(itemid)})
+    return render_template('item_spec.html',iteminfo = tmp)
 # logout API
 @app.route('/logout')
 def logout():
