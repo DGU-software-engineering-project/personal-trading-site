@@ -5,18 +5,17 @@
         <meta charset="UTF-8">
         <title>트레이딩 사이트</title>
 
-        <!-- <link rel="stylesheet" href= {{ url_for('static', filename='css/login.css') }}> -->
-        <link rel="stylesheet" href="static/css/signin.css?after">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}">
     </head>
 
     <body>
         <div class="navbar">
             <a class="logo" href="./">
-              <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+              <img src="{{ url_for('static', filename='images/dgu-logo.jpg') }}" height="70px">
             </a>
             <ul>
-              <li><a href="./signin">로그인</a></li>
-              <li><a href="./signup">회원가입</a></li>
+              <li><a href="{{ url_for('login') }}">로그인</a></li>
+              <li><a href="{{ url_for('sign_up') }}">회원가입</a></li>
             </ul>
           </div>
 

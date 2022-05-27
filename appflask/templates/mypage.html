@@ -4,15 +4,14 @@
     <head>
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
-        <link rel="stylesheet" href="static/css/mypage.css?after">
-        <!-- <link rel="stylesheet" href="static/css/reset.css?after"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/mypage.css') }}">
     </head>
 
     <body>
         <div class="navbar">
 
-            <a class="logo" href="./">
-            <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            <a class="logo" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/dgu-logo.jpg') }}" height="70px">
             </a>
 
             <ul>
