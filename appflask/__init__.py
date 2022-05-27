@@ -15,10 +15,13 @@ def index():
     entries = list(items.find())
     return render_template('index.html', entries=entries)
 
-@app.route('/users')
+@app.route('/followees')
 def viewusers():
-    tmp = users.find()
-    return dumps(tmp)
+    if 'ID' in session:
+        tmp = users.find_one({'ID': session['ID']},{'FOLLOWING':1})
+        return dumps(tmp)
+    return "login first"
+    
 @app.route('/items')
 def viewitems():
     tmp = items.find()
