@@ -111,7 +111,7 @@ button{
     color: #fff; font-size: 14px; font-weight:bold;
 }
 
-.pictureButton{
+.fileUploadDesign button {
     display: block;
     width: 85px;
     height: 40px;
@@ -122,6 +122,10 @@ button{
     border: none;
     background-color: #1673ea;
     color: #fff; font-size: 14px; font-weight:bold;
+}
+
+.fileUploadDesign input {
+    display: none;
 }
 
 .productStatus {
