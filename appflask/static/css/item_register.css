@@ -94,6 +94,10 @@ body h1{
     box-sizing: border-box;
 }
 
+button{
+    cursor: pointer;
+}
+
 .productButton{
     display: block;
     width: 85px;
@@ -106,7 +110,7 @@ body h1{
     color: #fff; font-size: 14px; font-weight:bold;
 }
 
-.pictureButton{
+.fileUploadDesign button {
     display: block;
     width: 85px;
     height: 40px;
@@ -119,18 +123,20 @@ body h1{
     color: #fff; font-size: 14px; font-weight:bold;
 }
 
+.fileUploadDesign input {
+    display: none;
+}
+
 .products {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
     width: 950px;
-    /* text-align: center; */
 }
 
 .products img{
     width: 450px;
     height: 450px;
-    /* margin-right: 20px; */
     text-decoration: none;
     color: black;
     float: left;
