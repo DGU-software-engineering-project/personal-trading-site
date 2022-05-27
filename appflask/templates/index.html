@@ -40,7 +40,11 @@
             <button type="button" data-filter=".shoes">신발</button>
             <button type="button" data-filter=".food">음식</button>
             {% if session['ID'] %}
-                <button type="button" data-filter=".">팔로우</button>
+                follow = ''
+                {% for followee in user['FOLLOWING'] %}
+                    follow += '.' + followee + ' '
+                {% endfor %}
+                <button type="button" data-filter="follow">팔로우</button>
             {% endif %}
             <!-- 잊지 말고 팔로우한 사람만 보기 버튼 추가 하기-->
         </div>
@@ -49,7 +53,7 @@
             var mixer = mixitup('.products');
         </script>
 
-        <script>
+        <!-- <script>
 
             let follow_flag = false;
 
@@ -116,20 +120,14 @@
                     });
                 })
             }
-        </script>
+        </script> -->
         <!-- end-->
-
-        <!-- {% if session['ID'] %}
-            {% for index in range(0, len(entries)) %}
-                {% if session['ID'] == entries[i]. %}
-            {% endfor %}
-        {% endif%} -->
 
         <div class="products">
             {% for entry in entries %}
                 
-                <div class="mix {{entry.keyword}}">
-                    <a href="/itemspec/{{entry._id}}">
+                <div class="mix {{entry.keyword}} {{ entry.ID }}">
+                    <a href="./itemspec/{{ entry._id}}">
                         <img src="{{ entry.photo }}">
                         <p>{{ entry.item }}</p>
                         <p class="price">{{ entry.price }}</p>
