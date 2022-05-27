@@ -1,5 +1,6 @@
 from flask import Flask,render_template,redirect,request, url_for, abort,session,flash
 import pymongo
+from bson.objectid import ObjectId
 from bson.json_util import loads, dumps
 from werkzeug.utils import secure_filename
 import os
@@ -33,6 +34,11 @@ def viewphoto(photo):
 @app.route('/items/<userid>')
 def viewuseritems(userid):
     tmp = items.find({"ID": userid})
+    return dumps(tmp)
+# item spec API objectid로 검색하면 됨.
+@app.route('/itemspec/<itemid>')
+def viewitemspec(itemid):
+    tmp = items.find({'_id': ObjectId(itemid)})
     return dumps(tmp)
 # logout API
 @app.route('/logout')
