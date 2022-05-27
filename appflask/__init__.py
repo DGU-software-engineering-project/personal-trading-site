@@ -14,7 +14,8 @@ app.config['UPLOAD_FOLDER'] = './personal-trading-site/appflask/static/images'
 @app.route('/')
 def index():
     entries = list(items.find())
-    return render_template('index.html', entries=entries)
+    usr = list(users.find())
+    return render_template('index.html', entries=entries, users = usr)
 # API들
 # user 목록 API
 @app.route('/users')
