@@ -5,6 +5,8 @@
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
         <link rel="stylesheet" href="static/css/index.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="../static/js/mixitup.min.js"></script>
     </head>
 
     <body>
@@ -45,17 +47,29 @@
 
         <!-- 키워드 팔로우 목록 추가할 자리-->
 
-        
+        <div class="keywords">
+            <h2>키워드 : </h2>
+            <button type="button" data-filter="all">전체</button>
+            <button type="button" data-filter=".clothes">옷</button>
+            <button type="button" data-filter=".shoes">신발</button>
+            <button type="button" data-filter=".food">음식</button>
+        </div>
+        <script>
+            var mixer = mixitup('.products');
+        </script>
+
         <!-- end-->
 
         <div class="products">
 
             {% for entry in entries %}
-                <a href="./item">
-                    <img src="{{ entry.photo }}">
-                    <p>{{ entry.item }}</p>
-                    <p class="price">{{ entry.price }}</p>
-                </a>
+                <div class="mix {{entry.keyword}}">
+                    <a href="./item">
+                        <img src="{{ entry.photo }}">
+                        <p>{{ entry.item }}</p>
+                        <p class="price">{{ entry.price }}</p>
+                    </a>
+                </div>
             {% else %}
                 <p>Unbelievable.  No entries here so far</p>
             {% endfor %}
