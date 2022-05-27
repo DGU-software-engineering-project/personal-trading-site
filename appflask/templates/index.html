@@ -55,7 +55,7 @@
             {% for entry in entries %}
 
                 <div class="mix {{entry.keyword}}">
-                    <a href="./item">
+                    <a href="/itemspec/{{entry._id}}">
                         <img src="{{ entry.photo }}">
                         <p>{{ entry.item }}</p>
                         <p class="price">{{ entry.price }}</p>
