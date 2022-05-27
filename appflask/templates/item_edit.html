@@ -72,17 +72,17 @@
                 <form action="/item_edit" method="POST">
                     <fieldset>
                         <label for="productName">상품명</label>
-                        <input type="text" name="productName" placeholder="내용을 입력해주세요.">
+                        <input type="text" name="productName" value="{{ iteminfo.item }}" placeholder="내용을 입력해주세요.">
 
                         <label for="productPrice">가격</label>
-                        <input type="text" name="productPrice" placeholder="내용을 입력해주세요.">
+                        <input type="text" name="productPrice" value="{{ iteminfo.price }}" placeholder="내용을 입력해주세요.">
 
                         <label for="productExplain">상품 설명</label>
-                        <textarea name="productExplain" placeholder="내용을 입력해주세요."></textarea>
+                        <textarea name="productExplain" placeholder="내용을 입력해주세요.">{{ iteminfo.explain }}</textarea>
 
-                        <select class="productStatus">
-                            <option value="forSale">판매 중</option>
-                            <option value="soldOut">판매 완료</option>
+                        <select class="productStatus"> <!-- 이 부분 작동 확실하지 않음-->
+                            <option value="false">판매 중</option>
+                            <option value="true">판매 완료</option>
                         </select>
                         <button class="productButton" type="submit">상품 등록</button>
                     </fieldset>
