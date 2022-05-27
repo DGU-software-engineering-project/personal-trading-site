@@ -26,7 +26,7 @@ def viewitems():
     tmp = items.find()
     return dumps(tmp)
 # 사진 불러오는 API
-@app.route('/images/<photo>')
+@app.route('/static/<photo>')
 def viewphoto(photo):
     return render_template('img.html', image_file='images/'+photo)
 # user 별 item 목록 API
