@@ -92,6 +92,8 @@ def item_register():
         name=request.form['productName']
         price=request.form['prodentPrice']
         explain=request.form['productExplain']
+        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
+        items.insert_one(dic)
     return render_template('item_register.html')
 
 @app.route('/item_edit', methods = ['GET', 'POST'])
