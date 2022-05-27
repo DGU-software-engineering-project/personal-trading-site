@@ -17,14 +17,15 @@
             <ul>
                 <!-- <li><a href="#">{{username}}님 환영합니다!</a></li> -->
                 <li><a href="#">username님 환영합니다!</a></li>
-                <li><a href="./mypage">마이페이지</a></li>
-                <li><a href="./logout">로그아웃</a></li>
+                <li><a href="{{ url_for('mypage') }}">마이페이지</a></li>
+                <li><a href="{{ url_for('logout') }}">로그아웃</a></li>
             </ul>
         </div>
     
         <!-- <h1 style="float: left">username님의 마이페이지</h1> -->
 
         <div class="pageList">
+
             <div class="bar">
                 <h1>username님의 마이페이지</h1>
                 <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
