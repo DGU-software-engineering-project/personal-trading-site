@@ -13,7 +13,7 @@
             <img src="static/images/dgu-logo.jpg?v=1" height="70px">
             </a>
             <ul>
-                {% if isLoggedin %}
+                {% if session['ID'] %}
                     <!-- <li><a href="./mypage">마이페이지</a></li> -->
                     <li><a href="./logout">로그아웃</a></li>
                 {% else %}

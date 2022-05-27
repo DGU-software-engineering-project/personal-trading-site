@@ -5,6 +5,7 @@ from bson.json_util import loads, dumps
 from werkzeug.utils import secure_filename
 import os
 app = Flask(__name__)
+app.debug = True
 client = pymongo.MongoClient("mongodb+srv://admin:1234@cluster0.il12x.mongodb.net/tradingSiteDB?retryWrites=true&w=majority")
 db = client['tradingSiteDB']
 users = db.usersDB
@@ -104,7 +105,7 @@ def item_edit():
     return render_template('item_edit.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 
 
