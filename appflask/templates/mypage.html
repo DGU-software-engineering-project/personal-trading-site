@@ -31,6 +31,21 @@
                 <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
             </div>
 
+            {% for entry in entries %}
+                <div class="products">
+                    <a href="./itemspec/{{ entry._id}}">
+                        <img src="{{ entry.photo }}">
+                    </a>
+                    <div class="productInfo">
+                        <p>{{ entry.item }}</p>
+                        <p>가격 : {{ entry.price }}₩</p>
+                        <p>상태 : {{ entry.sold }}</p> <!-- 여기 한국어로 수정 하기 -->
+                    </div>
+                    <button type="button" class="productEditButton" onClick="location.href='./item_edit'">상품 수정</button>
+                </div>
+            {% endfor %}
+
+
             <div class="products">
                 <a href="./item">
                     <img src="static/images/product.jpg">
