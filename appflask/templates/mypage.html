@@ -32,7 +32,7 @@
         <div class="pageList">
 
             <div class="bar">
-                <h1>username님의 마이페이지</h1>
+                <h1>{{ iteminfo.ID }}님의 마이페이지</h1> <!-- 이름 다시 체크하기 -->
                 {% if session['ID'] == iteminfo.ID %} <!-- if문 다시 체크하기 -->
                     <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
                 {% endif %}
