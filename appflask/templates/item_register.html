@@ -4,7 +4,7 @@
     <head>
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
-        <link rel="stylesheet" href="static/css/item_register.css?after">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/item_register.css') }}">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function (e) {
@@ -55,22 +55,19 @@
 
     <body>
         <div class="navbar">
-            <a class="logo" href="./">
-            <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            <a class="logo" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/dgu-logo.jpg') }}" height="70px">
             </a>
             <ul>
-                <li><a href="./logout">로그아웃</a></li>   
+                <li><a href="{{ url_for('logout') }}">로그아웃</a></li>   
             </ul>
         </div>
     
         <h1>상품 등록</h1>
 
         <div class="products">
-            <img src="static/images/product.jpg">
-            <form action="/file_upload" method="POST" enctype="multipart/form-data">
-                <input type="file" name="file" />
-                <input type="submit"/>
-            </form>
+            <img src="{{ url_for('static', filename=image_file) }}">
+
             <div class="productRegisterBox">
                 <form action="/item_register" method="POST">
                     <fieldset>
