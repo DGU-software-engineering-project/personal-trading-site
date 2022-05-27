@@ -4,19 +4,17 @@
         <meta charset="UTF-8">
         <title>트레이딩 사이트</title>
 
-        <!-- CSS -->
-        <!-- <link rel="stylesheet" href= {{ url_for('static', filename='css/index.css') }}> -->
-        <link rel="stylesheet" href="static/css/sign_up.css?after">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/sign_up.css') }}">
     </head>
 
     <body>
         <div class="navbar">
-            <a class="logo" href="./">
-              <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            <a class="logo" href="{{ url_for('index') }}">
+              <img src="{{ url_for('static', filename="images/dgu-logo.jpg") }}" height="70px">
             </a>
             <ul>
-              <li><a href="./signin">로그인</a></li>
-              <li><a href="./signup">회원가입</a></li>
+              <li><a href="{{ url_for('login') }}">로그인</a></li>
+              <li><a href="{{ url_for('sign_up') }}">회원가입</a></li>
             </ul>
           </div>
 
@@ -35,6 +33,7 @@
 
                     <label for="name">이름</label>
                     <div class="nameInput">
+                      <input type="text" name="name" placeholder="성" style="margin-right: 64px">
                       <input type="text" name="name" placeholder="이름">
                     </div>
 
