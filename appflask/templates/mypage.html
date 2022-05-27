@@ -16,9 +16,14 @@
 
             <ul>
                 <!-- <li><a href="#">{{username}}님 환영합니다!</a></li> -->
-                <li><a href="#">username님 환영합니다!</a></li>
-                <li><a href="{{ url_for('mypage') }}">마이페이지</a></li>
-                <li><a href="{{ url_for('logout') }}">로그아웃</a></li>
+                {% if session['ID'] %}
+                    <li><a href="#">{{ session['ID'] }}님 환영합니다!</a></li>
+                    <li><a href="{{ url_for('mypage') }}">마이페이지</a></li>
+                    <li><a href="{{ url_for('logout') }}">로그아웃</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">로그인</a></li>
+                    <li><a href="{{ url_for('sign_up') }}">회원가입</a></li>
+                {% endif %}
             </ul>
         </div>
     
@@ -28,7 +33,9 @@
 
             <div class="bar">
                 <h1>username님의 마이페이지</h1>
-                <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
+                {% if session['ID'] == iteminfo.ID %} <!-- if문 다시 체크하기 -->
+                    <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
+                {% endif %}
             </div>
 
             {% for entry in entries %}
@@ -41,7 +48,9 @@
                         <p>가격 : {{ entry.price }}₩</p>
                         <p>상태 : {{ entry.sold }}</p> <!-- 여기 한국어로 수정 하기 -->
                     </div>
-                    <button type="button" class="productEditButton" onClick="location.href='./item_edit'">상품 수정</button>
+                    {% if session['ID'] == iteminfo.ID %} <!-- if문 다시 체크하기 -->
+                        <button type="button" class="productEditButton" onClick="location.href='./item_edit'">상품 수정</button>
+                    {% endif %}
                 </div>
             {% endfor %}
 
