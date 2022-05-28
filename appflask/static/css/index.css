@@ -79,7 +79,13 @@
     margin-right: auto;
     padding: 0;
     width: 740px;
+    /* text-align: center; */
+  }
+
+  .mix {
+    width: 245px;
     text-align: center;
+    display: inline-block;
   }
   
   .products img{
@@ -92,7 +98,7 @@
   .products a{
     text-decoration: none;
     color: black;
-    float: left;
+    /* float: left; */
     font-size: 16px;
   }
   
