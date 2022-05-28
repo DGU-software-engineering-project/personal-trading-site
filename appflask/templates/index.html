@@ -5,6 +5,7 @@
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
         <link rel="stylesheet" href="static/css/index.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </head>
 
     <body>
@@ -25,6 +26,10 @@
                 {% endif %}
             </ul>
         </div>
+
+        
+
+
         
 
         <h1>Product</h1>
@@ -37,87 +42,41 @@
             <button type="button" data-filter=".clothes">옷</button>
             <button type="button" data-filter=".shoes">신발</button>
             <button type="button" data-filter=".food">음식</button>
-            {% if session['ID'] %}
-                follow = ''
-                {% for followee in user['FOLLOWING'] %}
-                    follow += '.' + followee + ', '
-                {% endfor %}
-                <button type="button" data-filter="follow">팔로우</button>
-            {% endif %}
-            <!-- 잊지 말고 팔로우한 사람만 보기 버튼 추가 하기-->
+                
+            <div id="followButton">
+
+            </div>
+
         </div>
 
-       
+        <script type="text/javascript">
 
-        <!-- <script>
+            $(document).ready(function() {
 
-            let follow_flag = false;
+                $('#followButton').empty();
 
-            function showFollowee() {
-                $('#products').empty()
+                let users = {{ user | safe }};
 
-                // let viewFollow = event.target.value
-
-                if (follow_flag) {
-                    follow_flag = false;
-                } else {
-                    follow_flag = true;
+                for (var i = 0; i < users.length; i++) {
+                    if (users[i][ID] == {{ session['ID'] }}) {
+                        followList = users[i][FOLLOWING];
+                        break;
+                    }
                 }
 
-                new Promise( (succ, fail)=> {
-                    $.ajax({
-                        type: "GET",
-                        url: "/users",
-                        success: function (response) {
-                            let userInfo = JSON.parse(response1)
-                        },
-                        error: function () {
-                            alert("GET 실패")
-                        }
-                    });
-                }).then((arg) => {
-                    $.ajax({
-                        type: "GET",
-                        url: "/items",
-                        success: function (response2) {
-                            let items = JSON.parse(response2)
+                result = "";
+                for (var i = 0; i < followList.length; i++) {
+                    let usr = followList[i];
+                    result += '.' + usr + ', ';
+                }
 
-                            for (let i = 0; i < items.length; i++) {
-                                let productSold = items[i].sold;
-                                if (productSold)
-                                    continue;
-                                // let path = items[i].path;
-                                let productName = items[i].item;
-                                let productKeyword = items[i].keyword;
-                                let productPrice = items[i].price;
-                                let productPhoto = items[i].photo;
-                                let html_temp =`<div class="mix ${productKeyword}">
-                                                    <a href="./item">
-                                                        <img src="${productPhoto}">
-                                                        <p>${productName}</p>
-                                                        <p class="price">${productPrice}</p>
-                                                    </a>
-                                                </div>`
-                                for (let j = 0; j < userInfo.FOLLOWING.length; j++) {
-                                    if (follow_flag) {
-                                        if (items[i].ID === userInfo.FOLLOWING[j])
-                                            $('.products').append(temp_html)
-                                    } else {
-                                        $('.products').append(temp_html)
-                                    }
-                                }
+                let html_temp = `<button type="button" data-filter=" ${result}" style="display: none">팔로우</button>`
 
-                            }
+                $('#followButton').append(html_temp)
 
-                        },
-                        error: function () {
-                            alert("GET 실패")
-                        }
-                    });
-                })
-            }
-        </script> -->
-        <!-- end-->
+            });
+
+        </script>
 
         <div class="products">
             {% for entry in entries %}
@@ -139,7 +98,7 @@
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="../static/js/mixitup.min.js"></script>
 
-         <script>
+        <script>
             var mixer = mixitup('.products');
         </script>
     </body>
