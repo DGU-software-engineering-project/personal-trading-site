@@ -38,10 +38,14 @@
                     <div class="productInfo">
                         <p>{{ entry.item }}</p>
                         <p>가격 : {{ entry.price }}₩</p>
-                        <p>상태 : {{ entry.sold }}</p> <!-- 여기 한국어로 수정 하기 -->
+                        {% if entry.sold %}
+                            <p>상태 : 판매 완료</p>
+                        {% else %}
+                            <p>상태 : 판매 중</p>
+                        {% endif %}
                     </div>
 
-                    <button type="button" class="productEditButton" onClick="location.href='{{ url_for('item_edit', itemid=entry._id)}}'">상품 수정</button>
+                    <button type="button" class="productEditButton" onClick="location.href='{{ url_for('item_edit', itemid=entry._id) }}'">상품 수정</button>
                 </div>
             {% endfor %}
 
