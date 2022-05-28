@@ -42,14 +42,24 @@
             <button type="button" data-filter=".clothes">옷</button>
             <button type="button" data-filter=".shoes">신발</button>
             <button type="button" data-filter=".food">음식</button>
-                
-            <div id="followButton">
 
-            </div>
+            <button type="button" data-filter="
+            {% set result = '' %}
+            {% for user_temp in user %}
+                {% if user_temp.ID == session['ID'] %}
+                    {% for followee in user_temp.FOLLOWING %}
+                        {% set result = result ~ '.' ~ followee %}
+                        {{ result }}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            ">팔로우</button>
+
+            <!--<button type="button" data-filter="{{ result }}">팔로우</button>-->
 
         </div>
 
-        <script type="text/javascript">
+       <!-- <script type="text/javascript">
 
             $(document).ready(function() {
 
@@ -76,7 +86,7 @@
 
             });
 
-        </script>
+        </script> -->
 
         <div class="products">
             {% for entry in entries %}
