@@ -15,7 +15,8 @@ app.config['UPLOAD_FOLDER'] = './personal-trading-site/appflask/static/images'
 @app.route('/')
 def index():
     entries = list(items.find())
-    return render_template('index.html', entries=entries)
+    usr = list(users.find())
+    return render_template('index.html', entries=entries, user = usr)
 # API들
 # user 목록 API
 @app.route('/users')
@@ -85,9 +86,10 @@ def sign_up():
 def viewitemspec(itemid):
     tmp = items.find_one({'_id': ObjectId(itemid)})
     return render_template('item_spec.html',iteminfo = tmp)
-@app.route('/mypage', methods = ['GET', 'POST'])
-def mypage():
-    return render_template('mypage.html')
+@app.route('/mypage/<userid>', methods = ['GET', 'POST'])
+def mypage(userid):
+    tmp = items.find({"ID": userid})
+    return render_template('mypage.html',iteminfo=tmp)
 
 @app.route('/item_register', methods = ['GET', 'POST'])
 def item_register():
@@ -100,9 +102,17 @@ def item_register():
         redirect(url_for('mypage'))
     return render_template('item_register.html')
 
-@app.route('/item_edit', methods = ['GET', 'POST'])
-def item_edit():
-    return render_template('item_edit.html')
+@app.route('/item_edit/<itemid>', methods = ['GET', 'POST'])
+def item_edit(itemid):
+    tmp = items.find_one({'_id': ObjectId(itemid)})
+    if request.method == 'POST':
+        name=request.form['productName']
+        price=request.form['prodentPrice']
+        explain=request.form['productExplain']
+        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
+        items.update_one({'_id': ObjectId(itemid)},{"$set":dic})
+        redirect(url_for('mypage'))
+    return render_template('item_edit.html',iteminfo = tmp)
 
 if __name__ == '__main__':
     app.run()
