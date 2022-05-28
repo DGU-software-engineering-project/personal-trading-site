@@ -17,6 +17,7 @@ def index():
     entries = list(items.find())
     usr = list(users.find())
     return render_template('index.html', entries=entries, user = usr)
+
 # API들
 # user 목록 API
 @app.route('/users')
