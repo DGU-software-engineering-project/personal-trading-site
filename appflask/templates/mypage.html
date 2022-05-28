@@ -4,32 +4,55 @@
     <head>
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
-        <link rel="stylesheet" href="static/css/mypage.css?after">
-        <!-- <link rel="stylesheet" href="static/css/reset.css?after"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/mypage.css') }}">
     </head>
 
     <body>
         <div class="navbar">
 
-            <a class="logo" href="./">
-            <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            <a class="logo" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/dgu-logo.jpg') }}" height="70px">
             </a>
 
             <ul>
                 <!-- <li><a href="#">{{username}}님 환영합니다!</a></li> -->
-                <li><a href="#">username님 환영합니다!</a></li>
-                <li><a href="./mypage">마이페이지</a></li>
-                <li><a href="./logout">로그아웃</a></li>
+                {% if session['ID'] %}
+                    <li><a href="#">{{ session['ID'] }}님 환영합니다!</a></li>
+                    <li><a href="{{ url_for('logout') }}">로그아웃</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">로그인</a></li>
+                    <li><a href="{{ url_for('sign_up') }}">회원가입</a></li>
+                {% endif %}
             </ul>
         </div>
     
         <!-- <h1 style="float: left">username님의 마이페이지</h1> -->
 
         <div class="pageList">
+
             <div class="bar">
-                <h1>username님의 마이페이지</h1>
-                <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
+                <h1>{{ iteminfo.ID }}님의 마이페이지</h1> <!-- 이름 다시 체크하기 -->
+                {% if session['ID'] == iteminfo.ID %} <!-- if문 다시 체크하기 -->
+                    <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
+                {% endif %}
             </div>
+
+            {% for entry in entries %}
+                <div class="products">
+                    <a href="./itemspec/{{ entry._id}}">
+                        <img src="{{ entry.photo }}">
+                    </a>
+                    <div class="productInfo">
+                        <p>{{ entry.item }}</p>
+                        <p>가격 : {{ entry.price }}₩</p>
+                        <p>상태 : {{ entry.sold }}</p> <!-- 여기 한국어로 수정 하기 -->
+                    </div>
+                    {% if session['ID'] == iteminfo.ID %} <!-- if문 다시 체크하기 -->
+                        <button type="button" class="productEditButton" onClick="location.href='./item_edit'">상품 수정</button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
 
             <div class="products">
                 <a href="./item">

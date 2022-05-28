@@ -5,6 +5,7 @@ from bson.json_util import loads, dumps
 from werkzeug.utils import secure_filename
 import os
 app = Flask(__name__)
+app.debug = True
 client = pymongo.MongoClient("mongodb+srv://admin:1234@cluster0.il12x.mongodb.net/tradingSiteDB?retryWrites=true&w=majority")
 db = client['tradingSiteDB']
 users = db.usersDB
@@ -15,7 +16,8 @@ app.config['UPLOAD_FOLDER'] = './personal-trading-site/appflask/static/images'
 def index():
     entries = list(items.find())
     usr = list(users.find())
-    return render_template('index.html', entries=entries, users = usr)
+    return render_template('index.html', entries=entries, user = usr)
+
 # API들
 # user 목록 API
 @app.route('/users')
@@ -85,9 +87,10 @@ def sign_up():
 def viewitemspec(itemid):
     tmp = items.find_one({'_id': ObjectId(itemid)})
     return render_template('item_spec.html',iteminfo = tmp)
-@app.route('/mypage', methods = ['GET', 'POST'])
-def mypage():
-    return render_template('mypage.html')
+@app.route('/mypage/<userid>', methods = ['GET', 'POST'])
+def mypage(userid):
+    tmp = items.find({"ID": userid})
+    return render_template('mypage.html',iteminfo=tmp)
 
 @app.route('/item_register', methods = ['GET', 'POST'])
 def item_register():
@@ -113,7 +116,7 @@ def item_edit(itemid):
     return render_template('item_edit.html',iteminfo = tmp)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 
 

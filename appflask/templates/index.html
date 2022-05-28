@@ -5,8 +5,6 @@
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
         <link rel="stylesheet" href="static/css/index.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script src="../static/js/mixitup.min.js"></script>
     </head>
 
     <body>
@@ -19,7 +17,7 @@
             <ul>
                 {% if session['ID'] %}
                     <li><a href="#">{{session['ID']}}님 환영합니다!</a></li>
-                    <li><a href="./mypage">마이페이지</a></li>
+                    <li><a href="./mypage/{{session['ID']}}">마이페이지</a></li>
                     <li><a href="./logout">로그아웃</a></li>
                 {% else %}
                     <li><a href="./signin">로그인</a></li>
@@ -40,40 +38,109 @@
             <button type="button" data-filter=".shoes">신발</button>
             <button type="button" data-filter=".food">음식</button>
             {% if session['ID'] %}
-                <button type="button" data-filter=".">팔로우</button>
+                follow = ''
+                {% for followee in user['FOLLOWING'] %}
+                    follow += '.' + followee + ' '
+                {% endfor %}
+                <button type="button" data-filter="follow">팔로우</button>
             {% endif %}
             <!-- 잊지 말고 팔로우한 사람만 보기 버튼 추가 하기-->
         </div>
 
-        <script>
-            var mixer = mixitup('.products');
-        </script>
+       
 
+        <!-- <script>
+
+            let follow_flag = false;
+
+            function showFollowee() {
+                $('#products').empty()
+
+                // let viewFollow = event.target.value
+
+                if (follow_flag) {
+                    follow_flag = false;
+                } else {
+                    follow_flag = true;
+                }
+
+                new Promise( (succ, fail)=> {
+                    $.ajax({
+                        type: "GET",
+                        url: "/users",
+                        success: function (response) {
+                            let userInfo = JSON.parse(response1)
+                        },
+                        error: function () {
+                            alert("GET 실패")
+                        }
+                    });
+                }).then((arg) => {
+                    $.ajax({
+                        type: "GET",
+                        url: "/items",
+                        success: function (response2) {
+                            let items = JSON.parse(response2)
+
+                            for (let i = 0; i < items.length; i++) {
+                                let productSold = items[i].sold;
+                                if (productSold)
+                                    continue;
+                                // let path = items[i].path;
+                                let productName = items[i].item;
+                                let productKeyword = items[i].keyword;
+                                let productPrice = items[i].price;
+                                let productPhoto = items[i].photo;
+                                let html_temp =`<div class="mix ${productKeyword}">
+                                                    <a href="./item">
+                                                        <img src="${productPhoto}">
+                                                        <p>${productName}</p>
+                                                        <p class="price">${productPrice}</p>
+                                                    </a>
+                                                </div>`
+                                for (let j = 0; j < userInfo.FOLLOWING.length; j++) {
+                                    if (follow_flag) {
+                                        if (items[i].ID === userInfo.FOLLOWING[j])
+                                            $('.products').append(temp_html)
+                                    } else {
+                                        $('.products').append(temp_html)
+                                    }
+                                }
+
+                            }
+
+                        },
+                        error: function () {
+                            alert("GET 실패")
+                        }
+                    });
+                })
+            }
+        </script> -->
         <!-- end-->
 
         <div class="products">
             {% for entry in entries %}
-
-                <div class="mix {{entry.keyword}}">
-                    <a href="/itemspec/{{entry._id}}">
+                
+                <div class="mix {{entry.keyword}} {{ entry.ID }}">
+                    <a href="./itemspec/{{ entry._id }}">
                         <img src="{{ entry.photo }}">
                         <p>{{ entry.item }}</p>
-                        <p class="price">{{ entry.price }}</p>
+                        <p class="price">{{ entry.price }}₩</p>
                     </a>
                 </div>
             {% else %}
                 <p>Unbelievable.  No entries here so far</p>
             {% endfor %}
-
-            <!-- <a href="./item">
-                <img src="static/images/product.jpg">
-                <p>Product example</p>
-                <p class="price">100,000</p>
-            </a> -->
-
-            <div class="clearfix"></div>
         </div>
     
         <div class="footer"></div>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="../static/js/mixitup.min.js"></script>
+
+         <script>
+            var mixer = mixitup('.products');
+        </script>
     </body>
 </html>

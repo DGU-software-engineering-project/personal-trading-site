@@ -60,9 +60,13 @@ body h1{
 }
 
 .productRegisterButton{
+    cursor: pointer;
     height: 40px;
     width: 70px;
     margin-left: auto;
+    border: none;
+    background-color: #1673ea;
+    color: #fff; font-size: 14px; font-weight: bold;
 }
 
 .products{
@@ -97,10 +101,14 @@ body h1{
 }
 
 .productEditButton{
+    cursor: pointer;
     margin-left: auto;
-    /* margin-right: auto; */
     height: 30px;
     float: right;
+    width: 70px;
+    border: none;
+    background-color: #1673ea;
+    color: #fff; font-size: 14px; font-weight: bold;
 }
 
 .clearfix{

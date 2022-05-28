@@ -4,16 +4,62 @@
     <head>
         <title>트레이딩 사이트</title>
         <meta charset="UTF-8" >
-        <link rel="stylesheet" href="static/css/item_edit.css?after">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/item_edit.css') }}">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function (e) {
+                
+
+                $('#upload').on('click', function() {
+                    // e.preventDefault();
+                    $('#multiFiles').click();
+                    
+                    var form_data = new FormData();
+                    var ins = document.getElementById('multiFiles').files.length;
+
+                    if (ins == 0) {
+                        $('#msg').html('<span style="color: red">Select at least one file</span');
+                            return;
+                    }
+
+                    for (var x = 0; x < ins; x++) {
+                        form_data.append("files[]", document.getElementById('multiFiles').files[x]);
+                    }
+
+                    $.ajax({
+                        url: '/file_upload', // 라우팅할 곳
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(response) {
+                            $('msg').html('');
+                            $.each(response, function (key, data) {
+                                if (key !== 'message') {
+                                    $('#msg').append(key + ' -> ' + data + '<br/>');
+                                } else {
+                                    $('#msg').append(data + '<br/>');
+                                }
+                            })
+                        },
+                        error: function (response) {
+                            $('#msg').html(response.message);
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
 
     <body>
         <div class="navbar">
-            <a class="logo" href="./">
-            <img src="static/images/dgu-logo.jpg?v=1" height="70px">
+            <a class="logo" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/dgu-logo.jpg') }}" height="70px">
             </a>
             <ul>
-                <li><a href="./logout">로그아웃</a></li>   
+                <li><a href="{{ url_for('logout') }}">로그아웃</a></li>   
             </ul>
         </div>
     
@@ -26,24 +72,32 @@
                 <form action="/item_edit" method="POST">
                     <fieldset>
                         <label for="productName">상품명</label>
-                        <input type="text" name="productName" placeholder="내용을 입력해주세요.">
+                        <input type="text" name="productName" value="{{ iteminfo.item }}" placeholder="내용을 입력해주세요.">
 
                         <label for="productPrice">가격</label>
-                        <input type="text" name="productPrice" placeholder="내용을 입력해주세요.">
+                        <input type="text" name="productPrice" value="{{ iteminfo.price }}" placeholder="내용을 입력해주세요.">
 
                         <label for="productExplain">상품 설명</label>
-                        <textarea name="productExplain" placeholder="내용을 입력해주세요."></textarea>
+                        <textarea name="productExplain" placeholder="내용을 입력해주세요.">{{ iteminfo.explain }}</textarea>
 
-                        <select class="productStatus">
-                            <option value="forSale">판매 중</option>
-                            <option value="soldOut">판매 완료</option>
+                        <select class="productStatus"> <!-- 이 부분 작동 확실하지 않음-->
+                            <option value="false">판매 중</option>
+                            <option value="true">판매 완료</option>
                         </select>
-                        
                         <button class="productButton" type="submit">상품 등록</button>
                     </fieldset>
                 </form>
             </div>
-            <button class="pictureButton">사진 등록</button>
+
+            <div class="fileUploadDesign">
+                <dl>
+                    <p>
+                        <p id="msg"></p>
+                        <input type="file" id="multiFiles" name="files[]" multiple="multiple"/>
+                        <button id="upload">Upload</button>
+                    </p>
+                </dl>
+            </div>
 
             <div class="clearfix"></div>
         </div>
