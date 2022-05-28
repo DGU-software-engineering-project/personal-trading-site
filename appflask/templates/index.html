@@ -40,7 +40,7 @@
             {% if session['ID'] %}
                 follow = ''
                 {% for followee in user['FOLLOWING'] %}
-                    follow += '.' + followee + ' '
+                    follow += '.' + followee + ', '
                 {% endfor %}
                 <button type="button" data-filter="follow">팔로우</button>
             {% endif %}
