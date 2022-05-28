@@ -16,13 +16,8 @@
 
             <ul>
                 <!-- <li><a href="#">{{username}}님 환영합니다!</a></li> -->
-                {% if session['ID'] %}
-                    <li><a href="#">{{ session['ID'] }}님 환영합니다!</a></li>
-                    <li><a href="{{ url_for('logout') }}">로그아웃</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('login') }}">로그인</a></li>
-                    <li><a href="{{ url_for('sign_up') }}">회원가입</a></li>
-                {% endif %}
+                <li><a href="#">{{ session['ID'] }}님 환영합니다!</a></li>
+                <li><a href="{{ url_for('logout') }}">로그아웃</a></li>
             </ul>
         </div>
     
@@ -31,13 +26,11 @@
         <div class="pageList">
 
             <div class="bar">
-                <h1>{{ iteminfo.ID }}님의 마이페이지</h1> <!-- 이름 다시 체크하기 -->
-                {% if session['ID'] == iteminfo.ID %} <!-- if문 다시 체크하기 -->
-                    <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
-                {% endif %}
+                <h1>{{ session['ID'] }}님의 마이페이지</h1> <!-- 이름 다시 체크하기 -->
+                <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
             </div>
 
-            {% for entry in entries %}
+            {% for entry in iteminfo %}
                 <div class="products">
                     <a href="./itemspec/{{ entry._id}}">
                         <img src="{{ entry.photo }}">
@@ -47,9 +40,8 @@
                         <p>가격 : {{ entry.price }}₩</p>
                         <p>상태 : {{ entry.sold }}</p> <!-- 여기 한국어로 수정 하기 -->
                     </div>
-                    {% if session['ID'] == iteminfo.ID %} <!-- if문 다시 체크하기 -->
-                        <button type="button" class="productEditButton" onClick="location.href='./item_edit'">상품 수정</button>
-                    {% endif %}
+
+                    <button type="button" class="productEditButton" onClick="location.href='./item_edit'">상품 수정</button>
                 </div>
             {% endfor %}
 
