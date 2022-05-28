@@ -41,12 +41,12 @@
                         <p>상태 : {{ entry.sold }}</p> <!-- 여기 한국어로 수정 하기 -->
                     </div>
 
-                    <button type="button" class="productEditButton" onClick="location.href='./item_edit'">상품 수정</button>
+                    <button type="button" class="productEditButton" onClick="location.href='{{ url_for('item_edit', itemid=entry._id)}}'">상품 수정</button>
                 </div>
             {% endfor %}
 
 
-            <div class="products">
+            <!-- <div class="products">
                 <a href="./item">
                     <img src="static/images/product.jpg">
                 </a>
@@ -83,7 +83,7 @@
                     <p>상태 : 미판매</p>
                 </div>
                 <button type="button" class="productEditButton" onClick="location.href='./item_edit'">상품 수정</button>
-            </div>
+            </div> -->
 
                 <div class="clearfix"></div>
             </div>
