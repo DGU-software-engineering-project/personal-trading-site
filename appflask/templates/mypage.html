@@ -32,7 +32,7 @@
 
             {% for entry in iteminfo %}
                 <div class="products">
-                    <a href="./itemspec/{{ entry._id}}">
+                    <a href="{{ url_for('viewitemspec', itemid=entry._id) }}">
                         <img src="{{ entry.photo }}">
                     </a>
                     <div class="productInfo">
