@@ -1,4 +1,5 @@
-from flask import Flask,render_template,redirect,request, url_for, abort,session,flash
+from flask import Flask,render_template,redirect,request, url_for, abort,session,flash,jsonify
+from platformdirs import user_config_dir
 import pymongo
 from bson.objectid import ObjectId
 from bson.json_util import loads, dumps
@@ -44,13 +45,51 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 # file upload API
-@app.route('/file_upload', methods = ['GET', 'POST'])
+@app.route('/file_upload', methods = ['POST'])
 def file_upload():
-    if request.method == 'POST':
-        f = request.files['file']
-        f.save(secure_filename(f.filename))
-        f.save(os.path.join(app.config['UPLOAD_FOLDER'],f.filename))
-    return redirect(url_for('item_register'))
+    if 'file' not in request.files:
+        resp = jsonify({'message': 'No file part in the request'})
+        resp.status_code = 400
+        return resp
+    files = request.files.getlist('file')
+    success = False
+
+    for f in files:
+        filename =secure_filename(f.filename)
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+        success = True
+    if success:
+        resp = jsonify({'message':'File successfully uploaded'})
+        resp.status_code = 201
+        return resp
+    else:
+        resp = jsonify({'message':'error'})
+        resp.status_code = 400
+        return resp
+# follow API
+@app.route('/follow/<userid>', methods = ['POST'])
+def follow(userid):
+    if not session['ID']:
+        resp = jsonify({'message': 'sign in first'})
+        resp.status_code = 400
+        return resp
+    else:
+        users.update_one({'ID': session['ID']},{'$push':{'FOLLOWING':user_config_dir}})
+        resp = jsonify({'message':'Success Follow'})
+        resp.status_code = 201
+        return resp
+# id 중복체크
+@app.route('/id/<userid>', methods = ['POST'])
+def iddup(userid):
+    tmp = users.find({'ID':userid})
+    if not tmp:
+        resp = jsonify({'message': 'id duplicated'})
+        resp.status_code = 400
+        return resp
+    else:
+        resp = jsonify({'message':'id ok'})
+        resp.status_code = 201
+        return resp
 # 여기서부터 페이지들
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
@@ -96,11 +135,11 @@ def mypage(userid):
 def item_register():
     if request.method == 'POST':
         name=request.form['productName']
-        price=request.form['prodentPrice']
+        price=request.form['productPrice']
         explain=request.form['productExplain']
         dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
         items.insert_one(dic)
-        redirect(url_for('mypage'))
+        return redirect(url_for('mypage',userid=session['ID']))
     return render_template('item_register.html')
 
 @app.route('/item_edit/<itemid>', methods = ['GET', 'POST'])
@@ -108,12 +147,13 @@ def item_edit(itemid):
     tmp = items.find_one({'_id': ObjectId(itemid)})
     if request.method == 'POST':
         name=request.form['productName']
-        price=request.form['prodentPrice']
+        price=request.form['productPrice']
         explain=request.form['productExplain']
-        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
+        sold= request.form['sold']
+        dic = {"item" :name, "price" :price, "sold" :sold, "ID":session['ID'],"explain" :explain}
         items.update_one({'_id': ObjectId(itemid)},{"$set":dic})
-        redirect(url_for('mypage'))
-    return render_template('item_edit.html',iteminfo = tmp)
+        return redirect(url_for('mypage',userid=session['ID']))
+    return render_template('item_edit.html',iteminfo = tmp, itemid = itemid)
 
 if __name__ == '__main__':
     app.run()

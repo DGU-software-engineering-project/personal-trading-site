@@ -69,7 +69,7 @@
             <img src="{{ url_for('static', filename=image_file) }}">
 
             <div class="productRegisterBox">
-                <form action="/item_edit" method="POST">
+                <form action="{{ url_for('item_edit', itemid=itemid) }}" method="POST">
                     <fieldset>
                         <label for="productName">상품명</label>
                         <input type="text" name="productName" value="{{ iteminfo.item }}" placeholder="내용을 입력해주세요.">
@@ -80,7 +80,7 @@
                         <label for="productExplain">상품 설명</label>
                         <textarea name="productExplain" placeholder="내용을 입력해주세요.">{{ iteminfo.explain }}</textarea>
 
-                        <select class="productStatus"> <!-- 이 부분 작동 확실하지 않음-->
+                        <select class="productStatus" name="sold"> <!-- 이 부분 작동 확실하지 않음-->
                             <option value="false">판매 중</option>
                             <option value="true">판매 완료</option>
                         </select>
