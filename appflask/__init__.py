@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request, url_for, abort,session,flash
+from flask import Flask,render_template,redirect,request, url_for, abort,session,flash,jsonify
 import pymongo
 from bson.objectid import ObjectId
 from bson.json_util import loads, dumps
@@ -44,13 +44,28 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 # file upload API
-@app.route('/file_upload', methods = ['GET', 'POST'])
+@app.route('/file_upload', methods = ['POST'])
 def file_upload():
-    if request.method == 'POST':
-        f = request.files['file']
-        f.save(secure_filename(f.filename))
-        f.save(os.path.join(app.config['UPLOAD_FOLDER'],f.filename))
-    return redirect(url_for('item_register'))
+    if 'file' not in request.files:
+        resp = jsonify({'message': 'No file part in the request'})
+        resp.status_code = 400
+        return resp
+    files = request.files.getlist('file')
+    success = False
+
+    for f in files:
+        filename =secure_filename(f.filename)
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+        success = True
+    if success:
+        resp = jsonify({'message':'File successfully uploaded'})
+        resp.status_code = 201
+        return resp
+    else:
+        resp = jsonify({'message':'error'})
+        resp.status_code = 400
+        return resp
+# follow API
 # 여기서부터 페이지들
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
