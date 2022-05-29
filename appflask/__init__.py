@@ -96,11 +96,11 @@ def mypage(userid):
 def item_register():
     if request.method == 'POST':
         name=request.form['productName']
-        price=request.form['prodentPrice']
+        price=request.form['productPrice']
         explain=request.form['productExplain']
         dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
         items.insert_one(dic)
-        redirect(url_for('mypage'))
+        return redirect(url_for('mypage',userid=session['ID']))
     return render_template('item_register.html')
 
 @app.route('/item_edit/<itemid>', methods = ['GET', 'POST'])
@@ -108,11 +108,11 @@ def item_edit(itemid):
     tmp = items.find_one({'_id': ObjectId(itemid)})
     if request.method == 'POST':
         name=request.form['productName']
-        price=request.form['prodentPrice']
+        price=request.form['productPrice']
         explain=request.form['productExplain']
         dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
         items.update_one({'_id': ObjectId(itemid)},{"$set":dic})
-        redirect(url_for('mypage'))
+        return redirect(url_for('mypage',userid=session['ID']))
     return render_template('item_edit.html',iteminfo = tmp)
 
 if __name__ == '__main__':
