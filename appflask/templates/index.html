@@ -43,13 +43,29 @@
             <button type="button" data-filter=".shoes">신발</button>
             <button type="button" data-filter=".food">음식</button>
 
-            <button type="button" data-filter="
+            <!-- <button type="button" data-filter="
             {% set result = '' %}
             {% for user_temp in user %}
                 {% if user_temp.ID == session['ID'] %}
                     {% for followee in user_temp.FOLLOWING %}
                         {% set result = result ~ '.' ~ followee %}
                         {{ result }}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            ">팔로우</button> -->
+
+            <button type="button" data-filter="
+            {% set result = '' %}
+            {% for user_temp in user %}
+                {% if user_temp.ID == session['ID'] %}
+                    {% for i in range(user_temp.FOLLOWING | length )%}
+                        {% set result = result ~ '.' ~ user_temp.FOLLOWING[i] %}
+                        {% if i != (user_temp.FOLLOWING | length) - 1 %}
+                            {{ result ~ ', '}}
+                        {% else %}
+                            {{ result }}
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             {% endfor %}
