@@ -149,10 +149,11 @@ def item_edit(itemid):
         name=request.form['productName']
         price=request.form['productPrice']
         explain=request.form['productExplain']
-        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
+        sold= request.form['sold']
+        dic = {"item" :name, "price" :price, "sold" :sold, "ID":session['ID'],"explain" :explain}
         items.update_one({'_id': ObjectId(itemid)},{"$set":dic})
         return redirect(url_for('mypage',userid=session['ID']))
-    return render_template('item_edit.html',iteminfo = tmp)
+    return render_template('item_edit.html',iteminfo = tmp, itemid = itemid)
 
 if __name__ == '__main__':
     app.run()
