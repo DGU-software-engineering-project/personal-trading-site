@@ -94,8 +94,16 @@ button{ cursor: pointer; } /* 모든 버튼에 마우스손모양 처리 */
     margin-bottom: 10px; /* 동위선택자와의 간격 조정 */
 }
 
+#idCheck {
+    font-size: 10px;
+    width: 100px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .loginbox input{
-    display: block;
+    /* display: block; */
     width: 100%; height: 50px;
     margin-bottom: 25px; /* 동위선택자와의 간격 조정 */
     border: none; background-color: #ededed;
@@ -106,10 +114,6 @@ button{ cursor: pointer; } /* 모든 버튼에 마우스손모양 처리 */
 .nameInput{
     display: flex;
     align-items: center;
-}
-
-.nameInput input{
-    width: 45%;
 }
 
 .loginbox ul{
