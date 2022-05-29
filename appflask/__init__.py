@@ -1,4 +1,5 @@
 from flask import Flask,render_template,redirect,request, url_for, abort,session,flash,jsonify
+from platformdirs import user_config_dir
 import pymongo
 from bson.objectid import ObjectId
 from bson.json_util import loads, dumps
@@ -66,6 +67,17 @@ def file_upload():
         resp.status_code = 400
         return resp
 # follow API
+@app.route('/follow/<userid>', methods = ['POST'])
+def file_upload(userid):
+    if not session['ID']:
+        resp = jsonify({'message': 'sign in first'})
+        resp.status_code = 400
+        return resp
+    else:
+        users.update_one({'ID': session['ID']},{'$push':{'FOLLOWING':user_config_dir}})
+        resp = jsonify({'message':'Success Follow'})
+        resp.status_code = 201
+        return resp
 # 여기서부터 페이지들
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
