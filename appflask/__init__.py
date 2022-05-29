@@ -78,6 +78,18 @@ def file_upload(userid):
         resp = jsonify({'message':'Success Follow'})
         resp.status_code = 201
         return resp
+# id 중복체크
+@app.route('/id/<userid>', methods = ['POST'])
+def file_upload(userid):
+    tmp = users.find({'ID':userid})
+    if not tmp:
+        resp = jsonify({'message': 'id duplicated'})
+        resp.status_code = 400
+        return resp
+    else:
+        resp = jsonify({'message':'id ok'})
+        resp.status_code = 201
+        return resp
 # 여기서부터 페이지들
 @app.route('/signin',methods = ['POST', 'GET'])
 def login():
