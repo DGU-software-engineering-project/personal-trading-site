@@ -68,7 +68,7 @@ def file_upload():
         return resp
 # follow API
 @app.route('/follow/<userid>', methods = ['POST'])
-def file_upload(userid):
+def follow(userid):
     if not session['ID']:
         resp = jsonify({'message': 'sign in first'})
         resp.status_code = 400
@@ -80,7 +80,7 @@ def file_upload(userid):
         return resp
 # id 중복체크
 @app.route('/id/<userid>', methods = ['POST'])
-def file_upload(userid):
+def iddup(userid):
     tmp = users.find({'ID':userid})
     if not tmp:
         resp = jsonify({'message': 'id duplicated'})
