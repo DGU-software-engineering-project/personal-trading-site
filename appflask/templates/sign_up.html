@@ -37,12 +37,12 @@
               console.log(idCheck.value);
 
               $.ajax({
-                url: `/id/?userid=${idCheck.value}`,
+                url: '/id',
                 // url: `/id/${idCheck.value}`,
                 type: 'POST',
-
+                data:{checkId: idCheck.value},
                 success: function (response) {
-                  let msg = JSON.parse(response);
+                  let msg = response;
 
                   if (msg['message'] == 'id duplicated') {
                     alert('이미 존재하는 아이디입니다.');
@@ -69,7 +69,7 @@
                   <fieldset>
                     <label for="loginid">아이디</label>
                     <input class="nameInput" type="text" name="loginid" placeholder="Username" checkResult="fail" required style="width: 80%">
-                    <button class="idCheck" onclick="idDupliCheck()">아이디 중복 확인</button>
+                    
                     <img id="idCheckSuccess" style="display: none;">
 
                     <label for="loginpw">비밀번호</label>
@@ -86,6 +86,7 @@
                     <button type="submit">회원가입</button>
                   </fieldset>
                 </form>
+                <button class="idCheck" onclick="idDupliCheck()">아이디 중복 확인</button>
               </div>
         </div>
 
