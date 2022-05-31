@@ -141,7 +141,8 @@ def item_register():
         name=request.form['productName']
         price=request.form['productPrice']
         explain=request.form['productExplain']
-        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
+        keyword= request.form['productKeyword']
+        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain,"keyword" :keyword}
         items.insert_one(dic)
         return redirect(url_for('mypage',userid=session['ID']))
     return render_template('item_register.html')
