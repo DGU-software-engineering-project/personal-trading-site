@@ -53,7 +53,7 @@
                     alert('사용 가능한 아이디입니다.');
                     $('.nameInput').attr("checkResult", "success");
                     $('#idCheckSuccess').show();
-                    $('.idDupliCheck').show();
+                    $('.idCheck').hide();
                     return;
                   }
                 },
@@ -69,9 +69,9 @@
                 <form action="/signup" method="POST">
                   <fieldset>
                     <label for="loginid">아이디</label>
-                    <input class="nameInput" type="text" name="loginid" placeholder="Username" checkResult="fail" required style="width: 80%">
+                    <input class="nameInput" type="text" name="loginid" placeholder="Username" checkResult="fail" style="width: 80%" required>
                     <button type="button" class="idCheck" onclick="idDupliCheck()">아이디 중복 확인</button>
-                    <img id="idCheckSuccess" style="display: none;">
+                    <img id="idCheckSuccess" src="{{ url_for('static', filename="images/idCheckimg.jpg") }}" style="display: none;">
 
                     <label for="loginpw">비밀번호</label>
                     <input type="password" name="loginpw" placeholder="Password">
