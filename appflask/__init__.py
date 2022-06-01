@@ -79,16 +79,19 @@ def follow(userid):
         resp.status_code = 201
         return resp
 # id 중복체크
-@app.route('/id/<userid>', methods = ['POST'])
-def iddup(userid):
-    tmp = users.find({'ID':userid})
-    if not tmp:
-        resp = jsonify({'message': 'id duplicated'})
-        resp.status_code = 400
+@app.route('/id', methods = ['POST'])
+def iddup():
+    print(request.form['checkId'])
+    tmp = users.find_one({'ID':request.form['checkId']})
+    if tmp:
+        resp = jsonify({"message": "id duplicated"})
+        resp.status_code = 201
+        print("id bad")
         return resp
     else:
         resp = jsonify({'message':'id ok'})
         resp.status_code = 201
+        print("id good")
         return resp
 # 여기서부터 페이지들
 @app.route('/signin',methods = ['POST', 'GET'])
@@ -117,6 +120,7 @@ def sign_up():
         userdic = {"name":name,"ID":id,"PW":pw, "FOLLOWING":[]}
         users.insert_one(userdic)
         flash('signup success')
+        print("??????")
         return redirect(url_for('index'))
     else:
         return render_template('sign_up.html')
@@ -137,7 +141,8 @@ def item_register():
         name=request.form['productName']
         price=request.form['productPrice']
         explain=request.form['productExplain']
-        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain}
+        keyword= request.form['productKeyword']
+        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain,"keyword" :keyword}
         items.insert_one(dic)
         return redirect(url_for('mypage',userid=session['ID']))
     return render_template('item_register.html')
