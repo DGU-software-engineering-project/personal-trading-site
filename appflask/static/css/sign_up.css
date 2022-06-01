@@ -104,6 +104,16 @@ button{ cursor: pointer; } /* 모든 버튼에 마우스손모양 처리 */
 
 }
 
+#idCheckSuccess {
+    display: inline-block;
+    align-items: center;
+    float: right;
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 50px;
+    width: 50px;
+}
+
 .loginbox input{
     display: inline-block;
     width: 100%; height: 50px;
