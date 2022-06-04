@@ -61,12 +61,52 @@
                   alert ('error');
                 }
               });
+
             }
+
+            /*function confirmPw() {
+
+              originPw = document.querySelector('input[name="loginpw"]');
+              conPw = document.querySelector('input[name="loginpwcon"]');
+
+              console.log(originPw.value);
+              console.log(conPw.value);
+
+            } */
+
+            $("#pw , #pwcon").change(function() {
+              
+              if ($("#pw").val() == $("#pwcon").val()) {
+                let pwConMessage = '비밀번호가 일치합니다.';
+                $('#pw').attr("checkPw", "success");
+              } else {
+                let pwConMessage = '비밀번호가 일치하지 않습니다.';
+                $('#pw').attr("checkPw", "fail");
+              }
+              $('.confirmMsg').append(pwConMessage);
+
+            });
+
+            function checkAll() {
+              
+              if ($('.nameInput').attr("checkResult") == "fail") {
+                alert('아이디 중복 체크를 해주세요!');
+                return false;
+              } else if ($('#pw').attr("checkPw") == "fail") {
+                alert('비밀번호 양식을 확인해주세요!');
+                return false;
+              }
+
+              return true;
+            }
+
+
+
           </script>
 
             <div class="loginbox">
                 <h1>회원가입</h1>
-                <form action="/signup" method="POST">
+                <form action="/signup" method="POST" onsubmit="return checkAll()">
                   <fieldset>
                     <label for="loginid">아이디</label>
                     <input class="nameInput" type="text" name="loginid" placeholder="Username" checkResult="fail" style="width: 80%" required>
@@ -74,13 +114,14 @@
                     <img id="idCheckSuccess" src="{{ url_for('static', filename="images/idCheckimg.jpg") }}" style="display: none;">
 
                     <label for="loginpw">비밀번호</label>
-                    <input type="password" name="loginpw" placeholder="Password">
+                    <input type="password" name="loginpw" id="pw" onchange="confirmPw()" placeholder="Password" checkPw="fail">
 
                     <label for="loginpwcon">비밀번호 확인</label>
-                    <input type="password" name="loginpwcon" placeholder="Password confirm">
+                    <input type="password" name="loginpwcon" id="pwcon" onchange="confirmPw()" placeholder="Password confirm">
+                    <p id="confirmMsg"></p>
 
                     <label for="name">이름</label>
-                    <div class="nameInput">
+                    <div class="userNameInput">
                       <input type="text" name="name" placeholder="이름">
                     </div>
 
