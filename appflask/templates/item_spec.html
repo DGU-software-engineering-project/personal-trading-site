@@ -25,7 +25,11 @@
         <h1>{{ iteminfo.ID }}의 상품</h1>
 
         <!-- 밑에 팔로우하기 버튼 추가 하기 -->
-        <!--<button type=""-->
+        <div class="followButton">
+            <form action="/follow/{{ iteminfo.ID }}" method="POST">
+                <button type="submit">Follow</button>
+            </form>
+        </div>
 
         <div class="products">
             <img src="{{ iteminfo.photo }}">
