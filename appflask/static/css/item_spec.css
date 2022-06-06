@@ -42,13 +42,33 @@ body {
 body h1{
     text-align: center;
     margin-top: 80px;
-    margin-bottom: 120px;
+    margin-bottom: 40px;
     font-size: 30px;
-    font-style: bold;
+    font-weight: bold;
     color: #000000;
+}
+
+.followButton {
+    display: block;
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.followButton button {
+    cursor: pointer;
+    display: block;
+    width: 80px; height: 40px;
+    margin-left: auto;
+    border: none;
+    background-color: #1673ea;
+    color: #fff; font-size: 14px; font-weight: bold;
 }
   
 .products {
+    display: block;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
