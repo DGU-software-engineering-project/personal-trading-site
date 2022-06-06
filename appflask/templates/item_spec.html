@@ -48,7 +48,15 @@
                             }
                         },
                         error: function (response) {
-                            alert('error');
+                            let msg = response;
+                            if (msg['message'] == 'do not follow yourself') {
+                                alert('Do not follow yourself');
+                                return;
+                            } else {
+                                alert('Undefined error!');
+                                return;
+                            }
+                        
                         }
                     });
                 });
@@ -65,7 +73,7 @@
             </div>
         {% endif %}
 -->
-        {% if session['ID'] %}
+        {% if (session['ID'] != iteminfo.ID) and session['ID']  %}
             <div class="followButton">
                 <button type="button" id="followButtonClick">Follow</button>
             </div>
