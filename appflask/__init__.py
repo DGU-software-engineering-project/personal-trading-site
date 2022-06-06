@@ -73,8 +73,12 @@ def follow(userid):
         resp = jsonify({'message': 'sign in first'})
         resp.status_code = 400
         return resp
+    elif session['ID']==userid:
+        resp = jsonify({'message': 'do not follow yourself'})
+        resp.status_code = 400
+        return resp
     else:
-        users.update_one({'ID': session['ID']},{'$push':{'FOLLOWING':user_config_dir}})
+        users.update_one({'ID': session['ID']},{'$push':{'FOLLOWING':userid}})
         resp = jsonify({'message':'Success Follow'})
         resp.status_code = 201
         return resp
