@@ -114,15 +114,15 @@
                     <img id="idCheckSuccess" src="{{ url_for('static', filename="images/idCheckimg.jpg") }}" style="display: none;">
 
                     <label for="loginpw">비밀번호</label>
-                    <input type="password" name="loginpw" id="pw" onchange="confirmPw()" placeholder="Password" checkPw="fail">
+                    <input type="password" name="loginpw" id="pw" onchange="confirmPw()" placeholder="Password" checkPw="fail" required>
 
                     <label for="loginpwcon">비밀번호 확인</label>
-                    <input type="password" name="loginpwcon" id="pwcon" onchange="confirmPw()" placeholder="Password confirm">
+                    <input type="password" name="loginpwcon" id="pwcon" onchange="confirmPw()" placeholder="Password confirm" required>
                     <p id="confirmMsg"></p>
 
                     <label for="name">이름</label>
                     <div class="userNameInput">
-                      <input type="text" name="name" placeholder="이름">
+                      <input type="text" name="name" placeholder="이름" required>
                     </div>
 
                     <button type="submit">회원가입</button>
