@@ -12,7 +12,8 @@ db = client['tradingSiteDB']
 users = db.usersDB
 items = db.itemsDB
 app.config.update(SECRET_KEY='secret')
-app.config['UPLOAD_FOLDER'] = './personal-trading-site/appflask/static/images'
+# app.config['UPLOAD_FOLDER'] = './personal-trading-site/appflask/static/images'
+app.config['UPLOAD_FOLDER'] = './appflask/static/images'
 @app.route('/')
 def index():
     entries = list(items.find())
@@ -150,7 +151,8 @@ def item_register():
         dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain,"keyword" :keyword,"photo":photo}
         items.insert_one(dic)
         return redirect(url_for('mypage',userid=session['ID']))
-    return render_template('item_register.html')
+    return render_template('item_register2.html')
+    # return render_template('item_register.html')
 
 @app.route('/item_edit/<itemid>', methods = ['GET', 'POST'])
 def item_edit(itemid):
