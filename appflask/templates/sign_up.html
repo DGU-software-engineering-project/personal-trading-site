@@ -5,6 +5,7 @@
         <title>트레이딩 사이트</title>
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/sign_up.css') }}">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </head>
 
     <body>
@@ -74,18 +75,29 @@
 
             } */
 
-            $("#pw , #pwcon").change(function() {
+            $(document).ready( function() {
+              $("#pw, #pwcon").keyup(function() {
               
-              if ($("#pw").val() == $("#pwcon").val()) {
-                let pwConMessage = '비밀번호가 일치합니다.';
-                $('#pw').attr("checkPw", "success");
-              } else {
-                let pwConMessage = '비밀번호가 일치하지 않습니다.';
-                $('#pw').attr("checkPw", "fail");
-              }
-              $('.confirmMsg').append(pwConMessage);
+                var pw1 = $('#pw').val();
+                var pw2 = $('#pwcon').val();
 
+                if (pw1 != "" && pw2 != "") {
+                  if (pw1 == pw2) {
+                    $('#pw').attr("checkPw", "success");
+                    $('#confirmMsg1').show();
+                    $('#confirmMsg2').hide();
+                    console.log($('#pw').attr("checkPw"));
+                  } else {
+                    $('#pw').attr("checkPw", "fail");
+                    $('#confirmMsg1').hide();
+                    $('#confirmMsg2').show();
+                    console.log($('#pw').attr("checkPw"));
+                  }
+                }
+  
+              });
             });
+       
 
             function checkAll() {
               
@@ -114,11 +126,12 @@
                     <img id="idCheckSuccess" src="{{ url_for('static', filename="images/idCheckimg.jpg") }}" style="display: none;">
 
                     <label for="loginpw">비밀번호</label>
-                    <input type="password" name="loginpw" id="pw" onchange="confirmPw()" placeholder="Password" checkPw="fail" required>
+                    <input type="password" name="loginpw" id="pw" placeholder="Password" checkPw="fail" required>
 
                     <label for="loginpwcon">비밀번호 확인</label>
-                    <input type="password" name="loginpwcon" id="pwcon" onchange="confirmPw()" placeholder="Password confirm" required>
-                    <p id="confirmMsg"></p>
+                    <input type="password" name="loginpwcon" id="pwcon" placeholder="Password confirm" required>
+                    <p id="confirmMsg1" style="display:none">비밀번호가 일치합니다.</p>
+                    <p id="confirmMsg2" style="display:none">비밀번호가 틀립니다.</p>
 
                     <label for="name">이름</label>
                     <div class="userNameInput">
@@ -131,6 +144,5 @@
               </div>
         </div>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </body>
 </html>
