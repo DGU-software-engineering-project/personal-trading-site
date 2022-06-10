@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>트레이딩 사이트</title>
+        <meta charset="UTF-8" >
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/item_register.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/slide.css') }}">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function (e) {
+                
+                let fileTarget = $('#multiFiles');
+
+                fileTarget.on('change', function () {
+                    let form_data = new FormData();
+                    let ins = document.getElementById('multiFiles').files.length;
+
+                    if (ins == 0) {
+                        $('#msg').html('<span style="color:red">Select at least one file</span>');
+                        return;
+                    }
+                    /*
+                    for (var x = 0; x < ins; x++) {
+                        form_data.append("file", document.getElementById('multiFiles').files[x]);
+                    }
+                    */
+
+                    let inputFile = $("input[name='file']");
+                    let files = inputFile[0].files;
+                    console.log(files);
+                    for (let i = 0; i < files.length; i++) {
+                        form_data.append("file", files[i]);
+                        console.log(files[i]);
+                    }
+
+                    $.ajax({
+                        url: '/file_upload',
+                        type: 'POST',
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        
+                        success: function (response) {
+
+                            //$('#msg').html(response.message);
+                            /*
+                            $('#msg').html('');
+                            $.each(response, function (key, data) {
+                                if (key !== 'message') {
+                                    $('#msg').append(key + ' -> ' + data + '<br/>');
+                                } else {
+                                    $('#msg').append(data + '<br/>');
+                                }
+                            })
+                            */
+
+                        },
+                        error: function (response) {
+                            $('#msg').html(response.message);
+                        }
+                    })
+
+                })
+
+            });
+
+
+            function printImage(event) {
+                let cnt = 1;
+                let imgLen = event.target.files.length;
+
+
+
+                    for (var image of event.target.files) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (event) {
+                            //var img = document.createElement("img");
+                            //img.setAttribute("src", event.target.result);
+                            let imgPath = event.target.result;
+                            //document.querySelector("div#imagePrint").appendChild(img);
+                            //let temp_html = `<li><img src="${imgPath}"</li>`;
+                            let temp_html = `<img src="${imgPath}" style="width:100%">`;
+                            $('#imagePrint').append(temp_html);
+                            cnt++;
+                        };
+
+                        console.log(image);
+                        reader.readAsDataURL(image);
+    
+                    }
+            }
+            /*
+            function printImage(event) {
+                let cnt = 1;
+                let imgLen = event.target.files.length;
+
+
+                new Promise (function appendImageHtml(resolve, reject) {
+                    for (var image of event.target.files) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (event) {
+                            //var img = document.createElement("img");
+                            //img.setAttribute("src", event.target.result);
+                            let imgPath = event.target.result;
+                            //document.querySelector("div#imagePrint").appendChild(img);
+                            //let temp_html = `<li><img src="${imgPath}"</li>`;
+                            let temp_html = `<div class="mySlides fade">
+                                                <div class="numbertext">${cnt} / ${imgLen}</div>
+                                                <img src="${imgPath}" style="width:100%">
+                                            </div>`;
+                            $('.uploadedImage').append(temp_html);
+                            cnt++;
+                        };
+
+                        console.log(image);
+                        reader.readAsDataURL(image);
+    
+                    }
+
+                    resolve();
+                });
+
+                let addArrow = `<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                <a class="next" onclick="plusSlides(1)">&#10095;</a>`
+                $('.arrow').append(addArrow);
+
+                for (let count = 1; count <= imgLen; count++) {
+                    let addButton = `<span class="dot" onclick="currentSlide(${count})"></span> `;
+                    $('.imgButton').append(addButton);
+                }
+
+
+
+                async function slideuploadedImage() {
+                    await appendImageHtml();
+
+                    let slideIndex = 1;
+                    showSlides(slideIndex);
+
+                    function plusSlides(n) {
+                    showSlides(slideIndex += n);
+                    }
+
+                    function currentSlide(n) {
+                    showSlides(slideIndex = n);
+                    }
+
+                    function showSlides(n) {
+                        let k;
+                        let slides = document.getElementsByClassName("mySlides");
+                        let dots = document.getElementsByClassName("dot");
+                        if (n > slides.length) {slideIndex = 1}    
+                        if (n < 1) {slideIndex = slides.length}
+                        for (k = 0; k < slides.length; k++) {
+                            slides[k].style.display = "none";  
+                        }
+                        for (k = 0; k < dots.length; k++) {
+                            dots[k].className = dots[k].className.replace(" active", "");
+                        }
+                        slides[slideIndex-1].style.display = "block";  
+                        dots[slideIndex-1].className += " active";
+                    }
+                }
+            }
+            */
+
+        </script>
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a class="logo" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/dgu-logo.jpg') }}" height="70px">
+            </a>
+            <ul>
+                <li><a href="{{ url_for('logout') }}">로그아웃</a></li>   
+            </ul>
+        </div>
+    
+        <h1>상품 등록</h1>
+
+        <div class="products">
+            <!--<img src="{{ url_for('static', filename=image_file) }}">-->
+            <div id="imagePrint"></div>
+            <!--
+            <div class="preview">
+                <div class="slideshow-container">
+                    <div class="uploadedImage"></div>
+                    <div class="arrow"></div>
+                </div>
+                <br>
+                <div class="imgButton" style="text-align:center"></div>
+            </div>
+            -->
+
+            <div class="productRegisterBox">
+                <form action="/item_register" method="POST">
+                    <fieldset>
+                        <label for="productName">상품명</label>
+                        <input type="text" name="productName" placeholder="내용을 입력해주세요.">
+
+                        <label for="productPrice">가격</label>
+                        <input type="text" name="productPrice" placeholder="내용을 입력해주세요.">
+
+                        <label for="productExplain">상품 설명</label>
+                        <textarea class="productExplain" name="productExplain" placeholder="내용을 입력해주세요."></textarea>
+
+                        <select class="productKeyword" name="productKeyword"> <!-- 이 부분 작동 확실하지 않음-->
+                            <option value="clothes">옷</option>
+                            <option value="shoes">신발</option>
+                            <option value="food">음식</option>
+                        </select>
+
+                        <button class="productButton" type="submit">상품 등록</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="fileUploadDesign">
+
+                <dl>
+                    <p>
+                        <label class="inputFileButton" for="multiFiles">
+                            Upload
+                        </label>
+                        <input type="file" id="multiFiles" name="file" multiple="multiple" onchange="printImage(event)"/>
+                        <p id="msg"></p>
+                    </p>
+                </dl>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    
+        <div class="footer"></div>
+        <!--<script type="text/javascript" src="{{ url_for('static', filename='js/slideImage.js') }}"></script>-->
+    </body>
+</html>
