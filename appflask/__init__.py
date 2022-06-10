@@ -12,7 +12,7 @@ db = client['tradingSiteDB']
 users = db.usersDB
 items = db.itemsDB
 app.config.update(SECRET_KEY='secret')
-app.config['UPLOAD_FOLDER'] = './personal-trading-site/appflask/static/images'
+app.config['UPLOAD_FOLDER'] = './appflask/static/images'
 @app.route('/')
 def index():
     entries = list(items.find())
