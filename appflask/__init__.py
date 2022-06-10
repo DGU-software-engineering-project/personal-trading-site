@@ -59,7 +59,7 @@ def file_upload():
         f.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
         success = True
     if success:
-        resp = jsonify({'message':'File successfully uploaded'})
+        resp = jsonify({'message':'File successfully uploaded', 'filename':filename})
         resp.status_code = 201
         return resp
     else:
@@ -146,7 +146,8 @@ def item_register():
         price=request.form['productPrice']
         explain=request.form['productExplain']
         keyword= request.form['productKeyword']
-        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain,"keyword" :keyword}
+        photo=request.form['filename']
+        dic = {"item" :name, "price" :price, "sold" :False, "ID":session['ID'],"explain" :explain,"keyword" :keyword,"photo":photo}
         items.insert_one(dic)
         return redirect(url_for('mypage',userid=session['ID']))
     return render_template('item_register.html')
@@ -158,7 +159,10 @@ def item_edit(itemid):
         name=request.form['productName']
         price=request.form['productPrice']
         explain=request.form['productExplain']
-        sold= request.form['sold']
+        if request.form['sold']=="false":
+            sold=False
+        else:
+            sold=True
         dic = {"item" :name, "price" :price, "sold" :sold, "ID":session['ID'],"explain" :explain}
         items.update_one({'_id': ObjectId(itemid)},{"$set":dic})
         return redirect(url_for('mypage',userid=session['ID']))

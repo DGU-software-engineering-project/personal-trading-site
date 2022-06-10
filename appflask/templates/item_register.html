@@ -47,6 +47,12 @@
                                     $('#msg').append(data + '<br/>');
                                 }
                             })*/
+                            let msg = response;
+                            if (msg['filename']) {
+                                $("#filename").val("/static/images/" + msg['filename']);
+                                $("#photo").attr("src","/static/images/"+msg['filename']);
+                                return;
+                            }
                             alert("complete");
                         },
                         error: function (response) {
@@ -75,7 +81,7 @@
         <h1>상품 등록</h1>
 
         <div class="products">
-            <img src="{{ url_for('static', filename=image_file) }}">
+            <img id="photo" >
 
             <div class="productRegisterBox">
                 <form action="/item_register" method="POST">
@@ -94,7 +100,7 @@
                             <option value="shoes">신발</option>
                             <option value="food">음식</option>
                         </select>
-
+                        <input id="filename" type="hidden" value="" name="filename" readonly="">
                         <button class="productButton" type="submit">상품 등록</button>
                     </fieldset>
                 </form>

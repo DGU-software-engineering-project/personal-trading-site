@@ -66,7 +66,7 @@
         <h1>상품 정보 수정</h1>
 
         <div class="products">
-            <img src="{{ url_for('static', filename=image_file) }}">
+            <img src="{{ iteminfo.photo }}">
 
             <div class="productRegisterBox">
                 <form action="{{ url_for('item_edit', itemid=itemid) }}" method="POST">

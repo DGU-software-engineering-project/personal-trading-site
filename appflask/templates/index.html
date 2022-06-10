@@ -62,6 +62,9 @@
                         <img src="{{ entry.photo }}">
                         <p>{{ entry.item }}</p>
                         <p class="price">{{ entry.price }}₩</p>
+                        {% if entry.sold == true %}
+                        <p>판매완료</p>
+                        {% endif %}
                     </a>
                 </div>
             {% else %}
