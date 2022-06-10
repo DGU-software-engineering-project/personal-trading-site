@@ -178,6 +178,15 @@ button{
     float: left;
     font-size: 16px;
 }
+
+#imagePrint {
+    width: 450px;
+    height: 450px;
+    text-decoration: none;
+    color: black;
+    float: left;
+    font-size: 16px;
+}
   
 .clearfix{
     clear: both;
