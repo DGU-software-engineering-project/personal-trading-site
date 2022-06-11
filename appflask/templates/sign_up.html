@@ -77,21 +77,24 @@
               return true;
             }
             function confirmPw() {
-              let pw = document.getElementById('pw').value;
-              let pwcon= document.getElementById('pwcon').value;
+              let pw = document.getElementById('pw');
+              let pwcon= document.getElementById('pwcon');
               let cor = document.getElementById('confirmMsg1');
               let wro = document.getElementById('confirmMsg2');
-              if(pw==""){
+              if(pw.value==""){
                 cor.style.display ="none";
                 wro.style.display="none";
+                pw.setAttribute('checkpw', 'fail');
               }
-              else if(pw==pwcon){
+              else if(pw.value==pwcon.value){
                 cor.style.display ="block";
                 wro.style.display="none";
+                pw.setAttribute('checkpw', 'success');
               }
               else{
                 cor.style.display ="none";
                 wro.style.display="block";
+                pw.setAttribute('checkpw', 'fail');
               }
             }
 
