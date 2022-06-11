@@ -88,6 +88,9 @@
             <h2>{{ iteminfo.price }}₩</h2>
 
             <p class="explain">{{ iteminfo.explain }}</p>
+            {% if iteminfo.sold == true %}
+                <p>판매완료</p>
+            {% endif %}
             <div class="clearfix"></div>
         </div>
     
