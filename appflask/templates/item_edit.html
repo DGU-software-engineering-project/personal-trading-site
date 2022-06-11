@@ -11,7 +11,6 @@
                 
 
                 $('#upload').on('click', function() {
-                    // e.preventDefault();
                     $('#multiFiles').click();
                     
                     var form_data = new FormData();
@@ -80,7 +79,7 @@
                         <label for="productExplain">상품 설명</label>
                         <textarea name="productExplain" placeholder="내용을 입력해주세요.">{{ iteminfo.explain }}</textarea>
 
-                        <select class="productStatus" name="sold"> <!-- 이 부분 작동 확실하지 않음-->
+                        <select class="productStatus" name="sold">
                             <option value="false">판매 중</option>
                             <option value="true">판매 완료</option>
                         </select>
@@ -98,10 +97,6 @@
                     </p>
                 </dl>
             </div>
-
-            <div class="clearfix"></div>
         </div>
-    
-        <div class="footer"></div>
     </body>
 </html>

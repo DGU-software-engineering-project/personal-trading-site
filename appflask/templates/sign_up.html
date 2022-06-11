@@ -39,7 +39,6 @@
 
               $.ajax({
                 url: '/id',
-                // url: `/id/${idCheck.value}`,
                 type: 'POST',
                 dataType: "JSON",
                 data:{checkId: idCheck.value},
@@ -64,16 +63,6 @@
               });
 
             }
-
-            /*function confirmPw() {
-
-              originPw = document.querySelector('input[name="loginpw"]');
-              conPw = document.querySelector('input[name="loginpwcon"]');
-
-              console.log(originPw.value);
-              console.log(conPw.value);
-
-            } */
 
             $(document).ready( function() {
               $("#pw, #pwcon").keyup(function() {
@@ -100,7 +89,6 @@
        
 
             function checkAll() {
-              
               if ($('.nameInput').attr("checkResult") == "fail") {
                 alert('아이디 중복 체크를 해주세요!');
                 return false;
@@ -108,11 +96,8 @@
                 alert('비밀번호 양식을 확인해주세요!');
                 return false;
               }
-
               return true;
             }
-
-
 
           </script>
 
