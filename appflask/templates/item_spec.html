@@ -6,6 +6,7 @@
         <meta charset="UTF-8" >
         <link rel="stylesheet" href="{{ url_for('static', filename="css/item_spec.css") }}">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename="js/item_spec.js") }}"></script>
     </head>
 
     <body>
@@ -22,43 +23,6 @@
                 {% endif %}
             </ul>
         </div>
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#followButtonClick').click(function() {
-
-                    console.log('{{iteminfo.ID}}');
-
-                    $.ajax({
-                        url: '/follow/{{iteminfo.ID}}',
-                        type: 'POST',
-
-                        success: function (response) {
-                            let msg = response;
-
-                            if (msg['message'] == 'sign in first') {
-                                alert('Sign in first');
-                                return;
-                            } else if (msg['message'] == 'Success Follow') {
-                                alert('Success Follow');
-                                return;
-                            }
-                        },
-                        error: function (response) {
-                            let msg = response;
-                            if (msg['message'] == 'do not follow yourself') {
-                                alert('Do not follow yourself');
-                                return;
-                            } else {
-                                alert('Undefined error!');
-                                return;
-                            }
-                        
-                        }
-                    });
-                });
-            });
-        </script>
     
         <h1>{{ iteminfo.ID }}의 상품</h1>
 
