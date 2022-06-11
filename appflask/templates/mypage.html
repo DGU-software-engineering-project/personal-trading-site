@@ -9,7 +9,6 @@
 
     <body>
         <div class="navbar">
-
             <a class="logo" href="{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='images/dgu-logo.jpg') }}" height="70px">
             </a>
@@ -21,7 +20,6 @@
         </div>
 
         <div class="pageList">
-
             <div class="bar">
                 <h1>{{ session['ID'] }}님의 마이페이지</h1>
                 <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
