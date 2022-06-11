@@ -159,11 +159,12 @@ def item_edit(itemid):
         name=request.form['productName']
         price=request.form['productPrice']
         explain=request.form['productExplain']
+        photo=request.form['filename']
         if request.form['sold']=="false":
             sold=False
         else:
             sold=True
-        dic = {"item" :name, "price" :price, "sold" :sold, "ID":session['ID'],"explain" :explain}
+        dic = {"item" :name, "price" :price, "sold" :sold, "ID":session['ID'],"explain" :explain,"photo":photo}
         items.update_one({'_id': ObjectId(itemid)},{"$set":dic})
         return redirect(url_for('mypage',userid=session['ID']))
     return render_template('item_edit.html',iteminfo = tmp, itemid = itemid)

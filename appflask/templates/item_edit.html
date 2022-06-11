@@ -9,11 +9,9 @@
         <script type="text/javascript">
             $(document).ready(function (e) {
                 
+                var fileTarget = $('#multiFiles');
 
-                $('#upload').on('click', function() {
-                    // e.preventDefault();
-                    $('#multiFiles').click();
-                    
+                fileTarget.on('change', function() {
                     var form_data = new FormData();
                     var ins = document.getElementById('multiFiles').files.length;
 
@@ -21,34 +19,51 @@
                         $('#msg').html('<span style="color: red">Select at least one file</span');
                             return;
                     }
-
+                    /*
                     for (var x = 0; x < ins; x++) {
-                        form_data.append("files[]", document.getElementById('multiFiles').files[x]);
+                        form_data.append("file", document.getElementById('multiFiles').files[x]);
                     }
+                    */
+                    form_data.append("file", document.getElementById('multiFiles').files[0]);
 
+                    for (var key of form_data.keys()) {
+                        console.log(key, ":", form_data.get(key));
+                    }
                     $.ajax({
                         url: '/file_upload', // 라우팅할 곳
-                        dataType: 'json',
+                        dataType: 'JSON',
                         cache: false,
                         contentType: false,
                         processData: false,
+                        enctype: 'multipart/form-data',
                         data: form_data,
-                        type: 'post',
+                        type: 'POST',
                         success: function(response) {
-                            $('msg').html('');
+                            /*$('msg').html('');
                             $.each(response, function (key, data) {
                                 if (key !== 'message') {
                                     $('#msg').append(key + ' -> ' + data + '<br/>');
                                 } else {
                                     $('#msg').append(data + '<br/>');
                                 }
-                            })
+                            })*/
+                            let msg = response;
+                            if (msg['filename']) {
+                                $("#filename").val("/static/images/" + msg['filename']);
+                                $("#photo").attr("src","/static/images/"+msg['filename']);
+                                return;
+                            }
+                            alert("complete");
                         },
                         error: function (response) {
-                            $('#msg').html(response.message);
+                            // $('#msg').html(response.message);
+                            alert("fail");
                         }
                     });
-                });
+
+                })
+
+            
             });
         </script>
     </head>
@@ -66,7 +81,7 @@
         <h1>상품 정보 수정</h1>
 
         <div class="products">
-            <img src="{{ iteminfo.photo }}">
+            <img src="{{ iteminfo.photo }}" id="photo">
 
             <div class="productRegisterBox">
                 <form action="{{ url_for('item_edit', itemid=itemid) }}" method="POST">
@@ -84,6 +99,7 @@
                             <option value="false">판매 중</option>
                             <option value="true">판매 완료</option>
                         </select>
+                        <input id="filename" type="hidden" value="" name="filename" readonly="">
                         <button class="productButton" type="submit">상품 등록</button>
                     </fieldset>
                 </form>
@@ -92,9 +108,11 @@
             <div class="fileUploadDesign">
                 <dl>
                     <p>
+                        <label class="inputFileButton" for="multiFiles">
+                            Upload
+                        </label>
+                        <input type="file" id="multiFiles" name="file" multiple="multiple"/>
                         <p id="msg"></p>
-                        <input type="file" id="multiFiles" name="files[]" multiple="multiple"/>
-                        <button id="upload">Upload</button>
                     </p>
                 </dl>
             </div>
