@@ -6,6 +6,7 @@
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/sign_up.css') }}">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/sign_up.js') }}"></script>
     </head>
 
     <body>
@@ -19,115 +20,32 @@
             </ul>
           </div>
 
-          <script type="text/javascript">
+          <div class="loginbox">
+              <h1>회원가입</h1>
+              <form action="/signup" method="POST" onsubmit="return checkAll()">
+                <fieldset>
+                  <label for="loginid">아이디</label>
+                  <input class="nameInput" type="text" name="loginid" placeholder="Username" checkResult="fail" style="width: 80%" required>
+                  <button type="button" class="idCheck" onclick="idDupliCheck()">아이디 중복 확인</button>
+                  <img id="idCheckSuccess" src="{{ url_for('static', filename="images/idCheckimg.jpg") }}" style="display: none;">
 
-            function idDupliCheck() {
+                  <label for="loginpw">비밀번호</label>
+                  <input type="password" name="loginpw" id="pw" placeholder="Password" checkPw="fail" required>
 
-              $('.nameInput').change(function () {
-                $('#idCheckSuccess').hide();
-                $('.idCheck').show();
-                $('.nameInput').attr("checkResult", "fail");
-              })
+                  <label for="loginpwcon">비밀번호 확인</label>
+                  <input type="password" name="loginpwcon" id="pwcon" placeholder="Password confirm" required>
+                  <p id="confirmMsg1" style="display:none">비밀번호가 일치합니다.</p>
+                  <p id="confirmMsg2" style="display:none">비밀번호가 틀립니다.</p>
 
-              if ($('.nameInput').val() == '') {
-                alert('아이디를 입력해주세요!')
-                return;
-              }
+                  <label for="name">이름</label>
+                  <div class="userNameInput">
+                    <input type="text" name="name" placeholder="이름" required>
+                  </div>
 
-              idCheck = document.querySelector('input[name="loginid"]');
-              console.log(idCheck.value);
-
-              $.ajax({
-                url: '/id',
-                type: 'POST',
-                dataType: "JSON",
-                data:{checkId: idCheck.value},
-                success: function (response) {
-                  let msg = response;
-
-                  if (msg['message'] == 'id duplicated') {
-                    alert('이미 존재하는 아이디입니다.');
-                    idCheck.focus();
-                    return;
-                  } else if (msg['message'] == 'id ok') {
-                    alert('사용 가능한 아이디입니다.');
-                    $('.nameInput').attr("checkResult", "success");
-                    $('#idCheckSuccess').show();
-                    $('.idCheck').hide();
-                    return;
-                  }
-                },
-                error: function (response) {
-                  alert ('error');
-                }
-              });
-
-            }
-
-            $(document).ready( function() {
-              $("#pw, #pwcon").keyup(function() {
-              
-                var pw1 = $('#pw').val();
-                var pw2 = $('#pwcon').val();
-
-                if (pw1 != "" && pw2 != "") {
-                  if (pw1 == pw2) {
-                    $('#pw').attr("checkPw", "success");
-                    $('#confirmMsg1').show();
-                    $('#confirmMsg2').hide();
-                    console.log($('#pw').attr("checkPw"));
-                  } else {
-                    $('#pw').attr("checkPw", "fail");
-                    $('#confirmMsg1').hide();
-                    $('#confirmMsg2').show();
-                    console.log($('#pw').attr("checkPw"));
-                  }
-                }
-  
-              });
-            });
-       
-
-            function checkAll() {
-              if ($('.nameInput').attr("checkResult") == "fail") {
-                alert('아이디 중복 체크를 해주세요!');
-                return false;
-              } else if ($('#pw').attr("checkPw") == "fail") {
-                alert('비밀번호 양식을 확인해주세요!');
-                return false;
-              }
-              return true;
-            }
-
-          </script>
-
-            <div class="loginbox">
-                <h1>회원가입</h1>
-                <form action="/signup" method="POST" onsubmit="return checkAll()">
-                  <fieldset>
-                    <label for="loginid">아이디</label>
-                    <input class="nameInput" type="text" name="loginid" placeholder="Username" checkResult="fail" style="width: 80%" required>
-                    <button type="button" class="idCheck" onclick="idDupliCheck()">아이디 중복 확인</button>
-                    <img id="idCheckSuccess" src="{{ url_for('static', filename="images/idCheckimg.jpg") }}" style="display: none;">
-
-                    <label for="loginpw">비밀번호</label>
-                    <input type="password" name="loginpw" id="pw" placeholder="Password" checkPw="fail" required>
-
-                    <label for="loginpwcon">비밀번호 확인</label>
-                    <input type="password" name="loginpwcon" id="pwcon" placeholder="Password confirm" required>
-                    <p id="confirmMsg1" style="display:none">비밀번호가 일치합니다.</p>
-                    <p id="confirmMsg2" style="display:none">비밀번호가 틀립니다.</p>
-
-                    <label for="name">이름</label>
-                    <div class="userNameInput">
-                      <input type="text" name="name" placeholder="이름" required>
-                    </div>
-
-                    <button type="submit">회원가입</button>
-                  </fieldset>
-                </form>
-              </div>
+                  <button type="submit">회원가입</button>
+                </fieldset>
+              </form>
+            </div>
         </div>
-
     </body>
 </html>
