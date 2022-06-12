@@ -19,16 +19,13 @@
                         $('#msg').html('<span style="color: red">Select at least one file</span');
                             return;
                     }
-                    /*
-                    for (var x = 0; x < ins; x++) {
-                        form_data.append("file", document.getElementById('multiFiles').files[x]);
-                    }
-                    */
+                   
                     form_data.append("file", document.getElementById('multiFiles').files[0]);
 
                     for (var key of form_data.keys()) {
                         console.log(key, ":", form_data.get(key));
                     }
+
                     $.ajax({
                         url: '/file_upload', // 라우팅할 곳
                         dataType: 'JSON',
@@ -39,14 +36,6 @@
                         data: form_data,
                         type: 'POST',
                         success: function(response) {
-                            /*$('msg').html('');
-                            $.each(response, function (key, data) {
-                                if (key !== 'message') {
-                                    $('#msg').append(key + ' -> ' + data + '<br/>');
-                                } else {
-                                    $('#msg').append(data + '<br/>');
-                                }
-                            })*/
                             let msg = response;
                             if (msg['filename']) {
                                 $("#filename").val("/static/images/" + msg['filename']);
@@ -56,14 +45,12 @@
                             alert("complete");
                         },
                         error: function (response) {
-                            // $('#msg').html(response.message);
                             alert("fail");
                         }
                     });
 
                 })
 
-            
             });
         </script>
     </head>
@@ -95,7 +82,7 @@
                         <label for="productExplain">상품 설명</label>
                         <textarea name="productExplain" placeholder="내용을 입력해주세요.">{{ iteminfo.explain }}</textarea>
 
-                        <select class="productStatus" name="sold"> <!-- 이 부분 작동 확실하지 않음-->
+                        <select class="productStatus" name="sold">
                             <option value="false">판매 중</option>
                             <option value="true">판매 완료</option>
                         </select>
@@ -112,14 +99,9 @@
                             Upload
                         </label>
                         <input type="file" id="multiFiles" name="file" multiple="multiple"/>
-                        <p id="msg"></p>
                     </p>
                 </dl>
             </div>
-
-            <div class="clearfix"></div>
         </div>
-    
-        <div class="footer"></div>
     </body>
 </html>

@@ -15,18 +15,15 @@
             </a>
 
             <ul>
-                <!-- <li><a href="#">{{username}}님 환영합니다!</a></li> -->
                 <li><a href="#">{{ session['ID'] }}님 환영합니다!</a></li>
                 <li><a href="{{ url_for('logout') }}">로그아웃</a></li>
             </ul>
         </div>
-    
-        <!-- <h1 style="float: left">username님의 마이페이지</h1> -->
 
         <div class="pageList">
 
             <div class="bar">
-                <h1>{{ session['ID'] }}님의 마이페이지</h1> <!-- 이름 다시 체크하기 -->
+                <h1>{{ session['ID'] }}님의 마이페이지</h1>
                 <button class="productRegisterButton" onClick="location.href='/item_register'">상품 등록</button>
             </div>
 
@@ -48,12 +45,7 @@
                     <button type="button" class="productEditButton" onClick="location.href='{{ url_for('item_edit', itemid=entry._id) }}'">상품 수정</button>
                 </div>
             {% endfor %}
-
-                <div class="clearfix"></div>
             </div>
-
         </div>
-    
-        <div class="footer"></div>
     </body>
 </html>

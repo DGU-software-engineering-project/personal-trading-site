@@ -37,12 +37,9 @@
                             let msg = response;
 
                             if (msg['message'] == 'sign in first') {
-                                //alert(msg['message']);
                                 alert('Sign in first');
                                 return;
                             } else if (msg['message'] == 'Success Follow') {
-                                // 팔로우 버튼 바뀌는거 표시하기
-                                //alert(msg['message']);
                                 alert('Success Follow');
                                 return;
                             }
@@ -64,15 +61,7 @@
         </script>
     
         <h1>{{ iteminfo.ID }}의 상품</h1>
-<!--
-        {% if session['ID'] %}
-            <div class="followButton">
-                <form action="{{ url_for('follow', userid=iteminfo.ID) }}" method="POST">
-                    <button type="submit">Follow</button>
-                </form>
-            </div>
-        {% endif %}
--->
+
         {% if (session['ID'] != iteminfo.ID) and session['ID']  %}
             <div class="followButton">
                 <button type="button" id="followButtonClick">Follow</button>
@@ -91,10 +80,6 @@
             {% if iteminfo.sold == true %}
                 <p>판매완료</p>
             {% endif %}
-            <div class="clearfix"></div>
         </div>
-    
-        <div class="footer"></div>
-
     </body>
 </html>
